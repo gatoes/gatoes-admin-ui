@@ -102,6 +102,7 @@ class Cuisines extends Component {
                         <th>Sr.no.</th>
                         <th>Name</th>
                         <th>Action</th>
+                        <th>Popular</th>
                       </tr>
                     </thead>
                     <tbody>

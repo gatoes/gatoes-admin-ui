@@ -59,7 +59,7 @@
     "redux-persist-memory-storage": "^0.2.0",
     "redux-promise-middleware": "^6.0.1",
     "redux-thunk": "^2.3.0",
-    "socket.io-client": "^2.1.1"
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "react-scripts": "^2.1.8"

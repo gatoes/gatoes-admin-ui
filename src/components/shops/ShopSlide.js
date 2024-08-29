@@ -233,6 +233,38 @@ class ShopSlide extends Component {
     });
   }
 
+
+  showPendingModal(shopId, index) {
+    confirmAlert({
+      title: '',
+      message: "The shop is currently in Pending status. Do you want to keep it in Pending or change it to Online?",
+      buttons: [
+        {
+          label: 'Keep Pending',
+          onClick: () => {
+            toast.success("Shop status remains in Pending.", {
+              position: toast.POSITION.TOP_RIGHT
+            });
+          }
+        },
+        {
+          label: 'Change to Offline',
+          onClick: () => {
+            deactivateShop({shopStatus: 2, shopId: shopId}).then((response) => {
+              this.setState({
+                slideData: {...this.state.slideData, shopStatus: 1}
+              });
+              toast.success("Shop status has been changed to Online.", {
+                position: toast.POSITION.TOP_RIGHT
+              });
+            });
+          }
+        }
+      ]
+    });
+  }
+  
+
   showRatingFeedback(shopId, shopName, index){
     window.getFooter().setState({
       renderElement: <Modal 
@@ -314,7 +346,16 @@ class ShopSlide extends Component {
             }
           </td>
           <td>{ slideData.activation_date ? moment(slideData.activation_date).format('ll') : null }</td>
-          <td onClick={this.shopOnlineOfflineAnalytics.bind(this)}>{slideData.isDelivering && (slideData.shopStatus && slideData.shopStatus == 1) ? <span className='rider-online'>Online</span> : <span className='rider-offline'>Offline</span>}</td>
+          <td onClick={slideData.shopStatus === 3 ? this.showPendingModal.bind(this, slideData.shopId, index) : this.shopOnlineOfflineAnalytics.bind(this)}>
+  {slideData.shopStatus === 1 && slideData.isDelivering ? (
+    <span className='rider-online'>Online</span>
+  ) : slideData.shopStatus === 2 ? (
+    <span className='rider-offline'>Offline</span>
+  ) : slideData.shopStatus === 3 ? (
+    <span className='rider-pending'>Pending</span>
+  ) : null}
+</td>
+
           {
             getAclChecks('MARK_ORDER_UNASSIGN')
             ?

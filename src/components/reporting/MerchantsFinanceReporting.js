@@ -11,15 +11,18 @@ class MerchantsFinanceReporting extends Component {
   constructor(props){
     super(props);
     this.state = {
-      merchantListing: props.merchantListing,
+      merchantListing: props.merchantListing || { shops: [], limit: 10, total: 0 }, // Default values
       status: props.status,
       activePage: 1,
-      startDownload: null
+      startDownload: null,
+      pageInput: ''
     };
     this.getFilterFields = this.getFilterFields.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
     this.reload = this.reload.bind(this);
     this.downloadResult = this.downloadResult.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handlePageInputSubmit = this.handlePageInputSubmit.bind(this);
   }
 
   downloadResult(){
@@ -34,11 +37,9 @@ class MerchantsFinanceReporting extends Component {
     this.setState({filters});
     this.fetchRecords(1, filters);
   }
- 
-  componentDidMount(){
-    //this.fetchRecords(1);
+  componentDidMount() {
+    this.fetchRecords(1);
   }
-
   reload(){
     let {filters} = this.state;
     this.fetchRecords(1, filters);
@@ -57,20 +58,24 @@ class MerchantsFinanceReporting extends Component {
     this.fetchRecords(pageNumber, this.state.filters);
   }
 
-  render() {
-    const {merchantListing, activePage, filters, startDownload, status} = this.state;
-    console.log('merchantListing', merchantListing && merchantListing.shops);
-    var limit = 10;
-    var total = 0;
-    if(merchantListing && merchantListing.limit){
-      var srno = (activePage-1) * merchantListing.limit;
-      limit = merchantListing.limit;
-      total = merchantListing.total;
-    } else {
-      var srno = 0;   
-      limit = 10;
-      total = 0
+  handleInputChange(event) {
+    this.setState({ pageInput: event.target.value });
+  }
+
+  handlePageInputSubmit(event) {
+    event.preventDefault();
+    const pageNumber = parseInt(this.state.pageInput, 10);
+    if (pageNumber > 0 && pageNumber <= Math.ceil(this.state.merchantListing.total / this.state.merchantListing.limit)) {
+      this.setState({ activePage: pageNumber });
+      this.fetchRecords(pageNumber, this.state.filters);
     }
+  }
+
+  render() {
+    const {merchantListing, activePage, filters, startDownload, status,pageInput} = this.state;
+    const limit = merchantListing.limit || 10;
+    const total = merchantListing.total || 0;
+    const srno = (activePage - 1) * limit;
 
     if(startDownload !== null){
       this.setState({

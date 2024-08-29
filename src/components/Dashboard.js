@@ -21,7 +21,7 @@ class Dashboard extends Component {
     constructor(props){
       super(props);
       // this.socket = io.connect(`gatoes.com:3001?token=${window.localStorage.jwtToken || ' '}`);
-      this.socket = io.connect(`dev.gatoes.com:3001?token=${window.localStorage.jwtToken || ' '}`);
+      this.socket = io.connect(`localhost:3010?token=${window.localStorage.jwtToken || ' '}`);
     }
     
     componentDidMount(){

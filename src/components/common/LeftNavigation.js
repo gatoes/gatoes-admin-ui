@@ -344,11 +344,11 @@ class LeftNavigation extends Component {
                         <p>General Settings</p>
                       </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                       <NavLink exact activeClassName="active" className="nav-link list-group-item" to='/dashboard/appsetting'>
                         <p>App Settings</p>
                       </NavLink>
-                    </li>
+                    </li> */}
                     </>
                     :
                     null
@@ -660,7 +660,7 @@ class LeftNavigation extends Component {
             null
           } */}
 
-          {
+          {/* {
             getAclChecks('PROMOCODE_VIEW_ONLY')
             ?
             <li>
@@ -671,7 +671,7 @@ class LeftNavigation extends Component {
             </li>
             :
             null
-          }
+          } */}
             {/* {
             getAclChecks('PROMOCODE_VIEW_ONLY')
             ?

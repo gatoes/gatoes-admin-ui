@@ -6,14 +6,20 @@ import renderFieldLabelTransition from '../FormFields/renderFieldLabelTransition
 import renderField from '../FormFields/renderField';
 import validate from './ValidateCuisines';
 import { addCuisines, updateCuisinesSuccess } from '../../actions/shops';
-
+import ShopCategoryImage from '../shops/ShopCategoryImage';
 class EditCuisines extends Component {
   constructor(props){
     super(props);
     this.state = {
       detail: props.detail,
-      itemIndex: props.itemIndex
+      itemIndex: props.itemIndex,
+      itemImageUrl:null
     }
+    this.getImage = this.getImage.bind(this);
+  }
+
+  getImage(imageId){
+    this.props.change('image', imageId);
   }
 
   submitMenuForm(values){
@@ -44,6 +50,7 @@ class EditCuisines extends Component {
                 label="Name"
                 placeholder=""
               />
+               <ShopCategoryImage getImage={this.getImage} />
             </div>
           </div>
          </div> 

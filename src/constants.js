@@ -13,7 +13,7 @@ export const APP_VERSION = '1.0';
 // export const BASE_URL = 'https://api.gatoes.com';
 // export const BASE_URL_LIVE = 'https://api.gatoes.com';
 
-export const API_ROOT = 'https://devapi.gatoes.com';
+export const API_ROOT = 'http://localhost:3010/api/v1';
 export const API_URL = 'https://devapi.gatoes.com';
 export const APP_DOMAIN = 'https://devapi.gatoes.com';
 export const BASE_URL = 'https://devapi.gatoes.com';

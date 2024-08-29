@@ -7,6 +7,7 @@ import 'bootstrap-daterangepicker/daterangepicker.css';
 import {getShopListing} from '../../actions/shops';
 import { regionListing } from '../../actions/regions';
 import Select from 'react-select';
+import renderReactSelect from '../FormFields/renderReactSelect';
 const queryString = require('query-string');
 
 class MerchantFinanceFilter extends Component {
@@ -14,9 +15,10 @@ class MerchantFinanceFilter extends Component {
 	    super(props);
 	    const filters = queryString.parse(props.location.search, {arrayFormat: 'bracket'});
 	    this.state = {
-	      	shopId : 0,
-	      	shopObj: null,
-	      	zoneId: 0,
+			shopId: '',
+			shopObj: [],
+			zoneId: '',
+			zoneObj: [],
 	      	shopListing: [],
 	      	regionListing: [],
 	      	startDate: '01/01/2020', //moment().format("MM/DD/YYYY"),
@@ -26,6 +28,7 @@ class MerchantFinanceFilter extends Component {
 	      	...filters
 	    };
 	    this.onApply = this.onApply.bind(this);
+		this.submit = this.submit.bind(this);
 	}
 
 	componentDidMount(){
@@ -79,23 +82,84 @@ class MerchantFinanceFilter extends Component {
   		});
   	}
 
-  	handleShopChange = (shopObj) => {
-	    this.setState({
-	    	shopId: shopObj.value,
-	    	shopObj
-	    }, () =>
-	      console.log(`Option selected:`, this.state.shopObj)
-	    );
-	};
+	  handleShopChange = (shopObj) => {
+		const shopId = shopObj.map(shop => shop.value).join(',');
+		this.setState({
+		  shopId,
+		  shopObj
+		});
+	  };
+	
+	  handleZoneChange = (zoneObj) => {
+		const zoneId = zoneObj.map(zone => zone.value).join(',');
+		this.setState({
+		  zoneId,
+		  zoneObj
+		});
+	  };
+	
 
   	render() {
-  		const { name, startDate, endDate, dateRangeString, shopListing, shopId, regionListing, zoneId, shopObj} = this.state;
-  		let shopData = [];
+  		const { name, startDate, endDate, dateRangeString, shopListing, shopId, regionListing, zoneId, shopObj,zoneObj} = this.state;
+		  let shopData = [];
+		  let zoneData = [];
 
   		shopListing && shopListing.length > 0 && shopListing.map((obj, index) => {
           let shop = {value: obj.id, label: obj.shopName};
           shopData.push(shop);
   		})
+
+
+		  shopListing && shopListing.length > 0 && shopListing.map((obj) => {
+			let shop = { value: obj.id, label: obj.shopName };
+			shopData.push(shop);
+		  });
+	  
+		  regionListing && regionListing.length > 0 && regionListing.map((obj) => {
+			let zone = { value: obj.id, label: obj.name };
+			zoneData.push(zone);
+		  });
+
+
+		  const customStyles = {
+			multiValue: (base) => ({
+			  ...base,
+			  backgroundColor: '#e4e7ea', // Customize the background color
+			  borderRadius: '5px',
+			  padding: '2px'
+			}),
+			multiValueLabel: (base) => ({
+			  ...base,
+			  color: '#333', // Customize the text color
+			  padding: '3px'
+			}),
+			multiValueRemove: (base) => ({
+			  ...base,
+			  cursor: 'pointer',
+			  ':hover': {
+				color: '#fff',
+				backgroundColor: '#e74c3c', // Customize the remove button hover color
+				borderRadius: '5px'
+			  }
+			}),
+			control: (base, state) => ({
+			  ...base,
+			  minHeight: '40px',
+			  height: 'auto',
+			  overflow: 'visible'
+			}),
+			valueContainer: (base) => ({
+			  ...base,
+			  flexWrap: 'wrap',
+			  maxHeight: 'none',
+			  overflow: 'visible'
+			}),
+			container: (base) => ({
+			  ...base,
+			  minHeight: '40px',
+			  overflow: 'visible'
+			})
+		  };
 
 
 	    return (
@@ -106,12 +170,18 @@ class MerchantFinanceFilter extends Component {
 	              			<div className="col-sm-3 col-lg-4 col-xl-3">
 			                  	<div className="form-group">
 			                    	<label>Shop</label>
-				                    <Select
-								        value={shopObj}
-								        onChange={this.handleShopChange}
-								        options={shopData}
-								        placeholder="Choose Shop"
-								    />
+									<Select
+                    value={shopObj}
+                    onChange={this.handleShopChange}
+                    options={shopData}
+                    component={renderReactSelect}
+                    placeholder="Choose Shop"
+                    isMulti={true}
+                    closeMenuOnSelect={false}
+                    className="select-ui"
+                    parentDivClass="form-group w-45"
+                    styles={customStyles}
+                  />
 			                  	</div>
 			                </div>
 
@@ -133,14 +203,18 @@ class MerchantFinanceFilter extends Component {
 			                <div className="col-sm-3 col-lg-4 col-xl-3">
 			                  	<div className="form-group">
 			                    	<label>Zone</label>
-				                    <select className="form-control selectbox-block" name="zoneId" value={zoneId}>
-				                      <option value="0">Choose Zone</option>
-				                      {
-				                        regionListing && regionListing.length > 0 && regionListing.map((obj, index) => (
-				                          <option value={obj.id}>{obj.name}</option>
-				                        ))
-				                      }
-				                    </select>
+				                    <Select
+                    value={zoneObj}
+                    onChange={this.handleZoneChange}
+                    options={zoneData}
+                    component={renderReactSelect}
+                    placeholder="Choose Zone"
+                    isMulti={true}
+                    closeMenuOnSelect={false}
+                    className="select-ui"
+                    parentDivClass="form-group w-45"
+                    styles={customStyles}
+                  />
 			                  	</div>
 			                </div>
 			                <div className="col-sm-3 col-lg-4 col-xl-3">

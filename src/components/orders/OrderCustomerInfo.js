@@ -14,6 +14,8 @@ class OrderCustomerInfo extends Component {
 
       let hNumber = customeraddress.houseNumber ? customeraddress.houseNumber  + ', ' : '';
       let fNumber = customeraddress.flatNumber ? customeraddress.flatNumber  + ', ' : '';
+
+      
       
       let address = hNumber + fNumber + customeraddress.address;
       return (

@@ -16,10 +16,12 @@ class CuisinesSlide extends Component {
     super(props);
     this.state = {
       slideData: props.slideData,
-      index: props.index
+      index: props.index,
+      isPopular: false  // State for the checkbox
     };
     this.deleteItem = this.deleteItem.bind(this);
     this.editCuisinesPanel = this.editCuisinesPanel.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
   deleteItem(itemId, index){
@@ -68,6 +70,13 @@ class CuisinesSlide extends Component {
 
   }
 
+  handleCheckboxChange() {
+    this.setState(prevState => ({
+      isPopular: !prevState.isPopular
+    }));
+  }
+
+
   updateCuisineSlide(result){
     window.$$('body').removeClass('modal-open');
     window.$$('body').find('.modal-backdrop').removeClass('modal-backdrop');
@@ -83,7 +92,7 @@ class CuisinesSlide extends Component {
   }
 
 	render() {
-      const { slideData, index } = this.state;
+      const { slideData, index ,isPopular} = this.state;
     	return (
         <tr>
           <td>{ parseInt(index+1) }</td>
@@ -98,6 +107,22 @@ class CuisinesSlide extends Component {
               </Tooltip>
             </div>
           </td>
+          <td>
+          <input
+            type="checkbox"
+            checked={isPopular}
+            onChange={this.handleCheckboxChange}
+            style={{
+              width: '20px',
+              height: '20px',
+              cursor: 'pointer',
+              margin: '0',
+              padding: '0',
+              accentColor: 'white' // Green color for the checkbox when checked
+            }} 
+          />
+        </td>
+
         </tr>
     	);
   	}
