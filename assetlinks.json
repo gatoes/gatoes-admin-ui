@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.gatoes.dev",
+    "sha256_cert_fingerprints":
+    ["D8:FE:FA:63:EC:39:07:1E:6B:4D:1C:DD:9B:71:1D:20:E3:FD:7B:CA:A4:A5:7C:7A:A9:AD:9A:51:24:27:5E:7B"]
+  }
+}]

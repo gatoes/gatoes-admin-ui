@@ -1,0 +1,113 @@
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import {toast} from 'react-toastify';
+import AddBasicDetail from './AddBasicDetail';
+import ManageOrderingTime from './ManageOrderingTime';
+import ManageShopImage from './ManageShopImage';
+import ManageShopBanner from './ManageShopBanner';
+import ManageShopTaxes from './ManageShopTaxes';
+
+class AddShop extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeMenu : 'info',
+      shop_id: 0
+    }
+    this.setShopId = this.setShopId.bind(this);
+    this.setMenuStatus = this.setMenuStatus.bind(this);
+    //this.setImageStatus = this.setImageStatus.bind(this);
+  }
+
+  toggle(e, activeMenu){
+    e.preventDefault();
+    if(this.state.shop_id){
+      this.setState({
+        activeMenu
+      });
+    }
+  }
+
+  setShopId(shop_id){
+    this.setState({
+      shop_id: shop_id,
+      activeMenu: 'timing'
+    });
+  }
+
+  setMenuStatus(panel){
+    this.setState({
+      activeMenu: panel
+    });
+  }
+
+  // setImageStatus(){
+  //   this.setState({
+  //     activeMenu: 'pics'
+  //   });
+  // }
+
+  // setBannerStatus(){
+  //   this.setState({
+  //     activeMenu: 'banner'
+  //   });
+  // }
+
+  render() {
+    const {activeMenu} = this.state;
+    return (
+      <div className="container ani-ui-block shop-manager">
+        <div className="row menu-top-block">
+          <div className="col-sm-12 tl-block align-self-center">
+            <h4 className="heading">Add New Restaurant</h4>
+          </div>
+          <div className="od-menu col-sm-12">
+            <ul>
+              <li><a className={`${activeMenu == 'info' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'info')}>Restaurant Basic info</a>
+              </li>
+              <li><a className={`${activeMenu == 'timing' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'timing')}>Restaurant Timings</a>
+              </li>
+              <li><a className={`${activeMenu == 'taxes' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'taxes')}>Restaurant Taxes</a>
+              </li>
+              <li><a className={`${activeMenu == 'pics' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'pics')}>Restaurant Image</a>
+              </li>
+              <li><a className={`${activeMenu == 'banner' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'banner')}>Banner</a>
+              </li>
+
+            </ul>
+          </div>
+
+          
+            {
+              activeMenu == 'info'
+              ?
+              <AddBasicDetail setShopId={this.setShopId} />
+              :
+              activeMenu == 'timing'
+              ?
+              <ManageOrderingTime shopId={this.state.shop_id} setMenuStatus={this.setMenuStatus} />
+              :
+              activeMenu == 'taxes'
+              ?
+              <ManageShopTaxes shopId={this.state.shop_id}  setMenuStatus={this.setMenuStatus} />
+              :
+              activeMenu == 'pics'
+              ?
+              <ManageShopImage shopId={this.state.shop_id}  setMenuStatus={this.setMenuStatus} />
+              :
+              activeMenu == 'banner'
+              ?
+              <ManageShopBanner shopId={this.state.shop_id} />
+              :
+              <ManageShopBanner shopId={this.state.shop_id} />
+            }
+          
+
+        </div>
+        
+      </div>
+    );
+  }
+}
+
+export default AddShop;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>ic_dashboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Android" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Artboard" transform="translate(-32.000000, -242.000000)" stroke="#A1B3D6" stroke-width="1.4">
+            <g id="ic_dashboard" transform="translate(33.000000, 243.000000)">
+                <circle id="Oval" cx="10" cy="10" r="10"></circle>
+                <polygon id="Path" points="14.24 5.76 12.12 12.12 5.76 14.24 7.88 7.88"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
