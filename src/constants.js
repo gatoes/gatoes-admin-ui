@@ -100,6 +100,19 @@ export const TRANSFER_TYPE = [
   { value: '1', label: 'Online' }
 ];
 
+export const TAG = [
+  { value: '0', label: 'Pure Veg' },
+  { value: '1', label: 'Women Lead' },
+  { value: '2', label:'Multi Brand Kitchen'}
+];
+
+export const iswithGatoes = [
+  { value: '0', label: 'Yes' },
+  { value: '1', label: 'No' },
+  
+];
+
+
 export const WHO_BEAR_COST_REFUND_ORDER = [
   { value: '0', label: 'Admin' },
   { value: '1', label: 'Merchant' },
@@ -166,7 +179,8 @@ export const IS_TYPE_COUPON = [
   { value: '0', label: 'No Coupon' },
   { value: '1', label: 'Specific Coupon' },
   { value: '2', label: 'Featured Coupon' },
-  { value: '3', label: 'Promo Coupon' }
+  { value: '3', label: 'Promo Coupon' },
+  { value: '4', label: 'Super Promo' }
 ];
 export const ACTIVE_INACTIVE_STATUS = [
   { value: '1', label: 'Active' },

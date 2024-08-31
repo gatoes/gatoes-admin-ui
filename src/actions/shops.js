@@ -313,6 +313,25 @@ export function getBankList(params) {
   });
 }
 
+
+export function restauarnttaglisting(params) {
+  return axios({
+    method: 'GET',
+    params: params,
+    url: `${ROOT_URL}/serviceprovider/getrestauranttags`,
+  });
+}
+
+
+export function getIsWithGatoesOptions(params) {
+  return axios({
+    method: 'GET',
+    params: params,
+    url: `${ROOT_URL}/serviceprovider/getIsWithGatoesOptions`,
+  });
+}
+
+
 export function addCuisines(props){
   return axios({
     method: 'POST',

@@ -50,7 +50,7 @@ class PromoCodeInfo extends Component {
         showCouponImage : false,
         showMultipleCoupon: true
       });
-    } else if(chkval == 2 || chkval == 3 || chkval == 4){
+    } else if(chkval == 2 || chkval == 3 || chkval == 4||chkval==5){
       this.setState({
         showCouponImage : true,
         showCouponBox : true,

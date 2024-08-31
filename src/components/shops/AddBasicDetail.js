@@ -5,14 +5,14 @@ import { reduxForm, Field, SubmissionError, reset } from 'redux-form';
 import renderFieldLabelTransition from '../FormFields/renderFieldLabelTransition';
 import renderField from '../FormFields/renderField';
 import renderReactSelect from '../FormFields/renderReactSelect';
-import { cuisineListing, cuisineListingSuccess, addNewShop, categoryListing, getBankList } from '../../actions/shops';
+import { cuisineListing, cuisineListingSuccess, addNewShop, categoryListing, getBankList} from '../../actions/shops';
 import {toast} from 'react-toastify';
 import validate from './ValidateShop';
 import ShopImage from './ShopImage';
 import GooglePlacesAutocomplete from '../common/GooglePlacesAutocomplete';
 import { regionListing, deliveryRegionListing, getDeliveryRegionWithZone } from '../../actions/regions';
 import ExtraChargesTaxes from './ExtraChargesTaxes';
-import { IS_WITH_RIDER_OPTION, ALLOW_DELIVER_STATUS, VENDOR_TYPE, SHOP_DELIVERY_TYPE} from '../../constants';
+import { IS_WITH_RIDER_OPTION, ALLOW_DELIVER_STATUS, VENDOR_TYPE, SHOP_DELIVERY_TYPE,TAG,iswithGatoes} from '../../constants';
 import renderDatePicker from '../FormFields/renderDatePicker';
 
 class AddBasicDetail extends Component {
@@ -24,6 +24,7 @@ class AddBasicDetail extends Component {
       restaurant_region: [],
       categoryList: [],
       bankList:[],
+     
       cuisineList: props.cuisineList,
       is_submitting: false,
       status: props.status,
@@ -69,6 +70,10 @@ class AddBasicDetail extends Component {
         restaurant_region: response.data.data
       });
     })
+
+
+   
+
 
     regionListing({status: 1}).then((response) => {
       this.setState({
@@ -369,8 +374,37 @@ class AddBasicDetail extends Component {
                           placeholder=""
                         />
                       </div>
+                      <div className="col-lg-6 selectbox-block">
+                      <Field
+                        name="restaurantTag"
+                        component={renderReactSelect}
+                        options={TAG}
+                        optionLabel='label' // Corrected to match the key in TAG
+                        optionValue='value' // Corrected to match the key in TAG
+                        label="Restaurant Tag"
+                        placeholder="Select Restaurant Tags"
+                        multi={true}
+                        className="select-ui"
+                        parentDivClass="form-group w-100"
+                      />
                     </div>
 
+                    <div className="col-lg-6 selectbox-block">
+                      <Field
+                        name="IsWithGatoes"
+                        component={renderReactSelect}
+                        options={iswithGatoes}
+                        optionLabel='label' // Corrected to match the key in iswithGatoes
+                        optionValue='value' // Corrected to match the key in iswithGatoes
+                        label="Is Gatoes Choice ?"
+                        placeholder="Select"
+                        multi={false}
+                        className="select-ui"
+                        parentDivClass="form-group w-100"
+                      />
+                    </div>
+
+                  </div>
 
                   </div>
                 </div>

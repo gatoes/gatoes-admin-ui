@@ -71,7 +71,7 @@ class PromoNewCodeInfo extends Component {
         showBannerImage:false
 
       });
-    } else if(chkval == 2 ){
+    } else if(chkval == 2 ){      //specifi coupon
       this.setState({
         showCouponImage : true,
         showCouponBox : true,
@@ -96,6 +96,20 @@ class PromoNewCodeInfo extends Component {
 
      })
     }else if(chkval == 4){
+      this.setState({
+        showCouponImage : true,
+          showCouponBox : true,
+          showMultipleCoupon: false,
+          showCsvUpload:true,
+          showUserType:true,
+          showPhoneNumber: false,
+          showBannerImage:true
+  
+  
+       })
+    }
+
+    else if(chkval == 5){
       this.setState({
         showCouponImage : true,
           showCouponBox : true,

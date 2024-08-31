@@ -21,7 +21,7 @@ class CuisinesSlide extends Component {
     };
     this.deleteItem = this.deleteItem.bind(this);
     this.editCuisinesPanel = this.editCuisinesPanel.bind(this);
-    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+    
   }
 
   deleteItem(itemId, index){
@@ -107,21 +107,7 @@ class CuisinesSlide extends Component {
               </Tooltip>
             </div>
           </td>
-          <td>
-          <input
-            type="checkbox"
-            checked={isPopular}
-            onChange={this.handleCheckboxChange}
-            style={{
-              width: '20px',
-              height: '20px',
-              cursor: 'pointer',
-              margin: '0',
-              padding: '0',
-              accentColor: 'white' // Green color for the checkbox when checked
-            }} 
-          />
-        </td>
+         
 
         </tr>
     	);

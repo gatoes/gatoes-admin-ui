@@ -127,8 +127,8 @@ class PromoCodeSlide extends Component {
         couponVal = "1 coupon";
         couponType = 'Promo coupon';
       }  else if(slideData.coupon == 4){
-        couponVal = '';
-        couponType = 'Special Promo';
+        couponVal = '1 coupon';
+        couponType = 'Super Promo';
       } else {
         couponType = 'no coupon';
         //couponVal = slideData.discount + " " + DISCOUNT_TYPE[slideData.discount_type].label;  
@@ -211,7 +211,7 @@ class PromoCodeSlide extends Component {
 
           <td>
             {
-              slideData.coupon == 3
+      (slideData.coupon == 3 || slideData.coupon == 4)
               ?
               <div className="status-ui" onClick={() => this.displayRestaurantScreenStatus(slideData.id, index, fullScreenStats)}>
                 {

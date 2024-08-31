@@ -237,6 +237,15 @@ class MenuItemSlide extends Component {
               }
             </td>
           }
+
+          <td>
+            <div className="item-name">
+              
+              <p>{items.rating}</p>
+              
+            </div>
+          </td>
+
           <td>
             <div className="table-btn-block">
               {

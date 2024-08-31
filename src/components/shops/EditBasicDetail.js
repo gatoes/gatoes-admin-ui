@@ -12,7 +12,7 @@ import ShopImage from './ShopImage';
 import GooglePlacesAutocomplete from '../common/GooglePlacesAutocomplete';
 import { regionListing, deliveryRegionListing, getDeliveryRegionWithZone } from '../../actions/regions';
 import ExtraChargesTaxes from './ExtraChargesTaxes';
-import {IS_WITH_RIDER_OPTION, ALLOW_DELIVER_STATUS, VENDOR_TYPE, SHOP_DELIVERY_TYPE} from '../../constants';
+import {IS_WITH_RIDER_OPTION, ALLOW_DELIVER_STATUS, VENDOR_TYPE, SHOP_DELIVERY_TYPE,TAG,iswithGatoes} from '../../constants';
 import renderDatePicker from '../FormFields/renderDatePicker';
 
 class EditBasicDetail extends Component {
@@ -392,6 +392,35 @@ class EditBasicDetail extends Component {
                             label="FSSAI Number"
                             placeholder=""
                           />
+                        </div>
+
+                        <div className="col-lg-6 selectbox-block">
+                        <Field
+                        name="restaurantTag"
+                        component={renderReactSelect}
+                        options={TAG}
+                        optionLabel='label' // Corrected to match the key in TAG
+                        optionValue='value' // Corrected to match the key in TAG
+                        label="Restaurant Tag"
+                        placeholder="Select Restaurant Tags"
+                        multi={true}
+                        className="select-ui"
+                        parentDivClass="form-group w-100"
+                      />
+                        </div>
+                        <div className="col-lg-6 selectbox-block">
+                        <Field
+                        name="IsWithGatoes"
+                        component={renderReactSelect}
+                        options={iswithGatoes}
+                        optionLabel='label' // Corrected to match the key in iswithGatoes
+                        optionValue='value' // Corrected to match the key in iswithGatoes
+                        label="Is Gatoes Choice ?"
+                        placeholder="Select"
+                        multi={false}
+                        className="select-ui"
+                        parentDivClass="form-group w-100"
+                      />
                         </div>
                       </div>
                     </div>
