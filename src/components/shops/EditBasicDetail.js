@@ -12,7 +12,7 @@ import ShopImage from './ShopImage';
 import GooglePlacesAutocomplete from '../common/GooglePlacesAutocomplete';
 import { regionListing, deliveryRegionListing, getDeliveryRegionWithZone } from '../../actions/regions';
 import ExtraChargesTaxes from './ExtraChargesTaxes';
-import {IS_WITH_RIDER_OPTION, ALLOW_DELIVER_STATUS, VENDOR_TYPE, SHOP_DELIVERY_TYPE,TAG,iswithGatoes} from '../../constants';
+import {IS_WITH_RIDER_OPTION, ALLOW_DELIVER_STATUS, VENDOR_TYPE, SHOP_DELIVERY_TYPE,TAG,iswithGatoes,ACCOUNT_TYPE_OPTIONS,STORE_TYPE} from '../../constants';
 import renderDatePicker from '../FormFields/renderDatePicker';
 
 class EditBasicDetail extends Component {
@@ -137,9 +137,27 @@ class EditBasicDetail extends Component {
     })
   }
 
+
+  
+  
+
   render() {
     const {handleSubmit, pristine, submitting, cuisineList} = this.props;
     const {regionListing, deliveryRegion, categoryList, bankList, withoutRiderZone, restaurant_region} = this.state;
+
+    const validateWordCount = value => {
+      if (value && value.split(' ').length > 12) {
+        return 'Tagline must be 12 words or fewer';
+      }
+      return undefined;
+    };
+  
+    const validateMaxTwoOptions = value => {
+      if (value && value.length > 2) {
+        return 'You can select up to 2 options only';
+      }
+      return undefined;
+    };
     return (
       <div className="container ani-ui-block">
         
@@ -336,12 +354,22 @@ class EditBasicDetail extends Component {
                       </div>
                       <div className="row">
                         <div className="col-lg-6 selectbox-block">
-                          <Field
+                          {/* <Field
                             label="Vendor Type"
                             name='vendor_type'
                             options={VENDOR_TYPE}
                             component={renderReactSelect}
                             placeholder="Select Vendor Type"
+                            multi={false}
+                            className="select-ui"
+                            parentDivClass="form-group w-100"
+                          /> */}
+                           <Field
+                            label="Store Type"
+                            name='store_type'
+                            options={STORE_TYPE}
+                            component={renderReactSelect}
+                            placeholder="Select Store Type"
                             multi={false}
                             className="select-ui"
                             parentDivClass="form-group w-100"
@@ -394,20 +422,35 @@ class EditBasicDetail extends Component {
                           />
                         </div>
 
-                        <div className="col-lg-6 selectbox-block">
-                        <Field
-                        name="restaurantTag"
-                        component={renderReactSelect}
-                        options={TAG}
-                        optionLabel='label' // Corrected to match the key in TAG
-                        optionValue='value' // Corrected to match the key in TAG
-                        label="Restaurant Tag"
-                        placeholder="Select Restaurant Tags"
-                        multi={true}
-                        className="select-ui"
-                        parentDivClass="form-group w-100"
-                      />
+                        <div className="col-lg-6">
+                          <Field
+                            name="tagline"
+                            component={renderField}
+                            type="text"
+                            className="form-control"
+                            label="Restaurant Tagline"
+                            placeholder=""
+                            validate={validateWordCount}
+                          />
                         </div>
+
+
+                        <div className="col-lg-6 selectbox-block">
+                          <Field
+                            name="restaurantTag"
+                            component={renderReactSelect}
+                            options={TAG}
+                            optionLabel='label'
+                            optionValue='value'
+                            label="Restaurant Tag"
+                            placeholder="Select Restaurant Tags"
+                            multi={true}
+                            className="select-ui"
+                            parentDivClass="form-group w-100"
+                            validate={validateMaxTwoOptions}
+                          />
+                        </div>
+
                         <div className="col-lg-6 selectbox-block">
                         <Field
                         name="IsWithGatoes"
@@ -586,6 +629,49 @@ class EditBasicDetail extends Component {
                   </div>
                 </div> 
 
+
+
+                <div className="fields-ui-block">
+                  <div className="basic-details">
+                    <div className="heading">
+                      <h4>Outlet Manager Details</h4>
+                    </div>
+                    <div className="form-block">
+                      <div className="row">
+                        <div className="col-lg-6">
+                          <Field
+                            name="outlet_manager_name"
+                            component={renderField}
+                            type="text"
+                            className="form-control"
+                            label="Manager Name"
+                          />
+                        </div>
+                        <div className="col-lg-6">
+                          <Field
+                            name="outlet_manager_email"
+                            component={renderField}
+                            type="text"
+                            className="form-control"
+                            label="Email"
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-lg-6">
+                          <Field
+                            name="outlet_manager_contactnumber"
+                            component={renderField}
+                            type="text"
+                            className="form-control"
+                            label="Contact Number"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+
                 <div className="fields-ui-block">
                   <div className="basic-details">
                     <div className="heading">
@@ -719,6 +805,21 @@ class EditBasicDetail extends Component {
                         />
                       </div>
                     </div>
+                    <div className="row">
+                      <div className="col-lg-6 selectbox-block">
+                        <Field
+                          label="Account Type"
+                          name="account_type"
+                          options={ACCOUNT_TYPE_OPTIONS}  // This now uses 0 and 1 as values
+                          component={renderReactSelect}
+                          placeholder="Select Account Type"
+                          multi={false}
+                          className="select-ui"
+                          parentDivClass="form-group w-100"
+                        />
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               </div>

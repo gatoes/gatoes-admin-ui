@@ -112,6 +112,20 @@ export const iswithGatoes = [
   
 ];
 
+export const ACCOUNT_TYPE_OPTIONS = [
+  { value: '0', label: 'SAVING' },
+  { value: '1', label: 'CURRENT' },
+  
+];
+
+
+export const STORE_TYPE = [
+  { value: '0', label: 'BRICK AND MORTAR' },
+  { value: '1', label: 'FOOD TRUCK' },
+  { value: '2', label: 'VIRTUAL BRAND' },
+  { value: '3', label: 'GHOST KITCHEN' },
+  
+];
 
 export const WHO_BEAR_COST_REFUND_ORDER = [
   { value: '0', label: 'Admin' },

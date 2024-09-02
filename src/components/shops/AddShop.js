@@ -6,6 +6,7 @@ import ManageOrderingTime from './ManageOrderingTime';
 import ManageShopImage from './ManageShopImage';
 import ManageShopBanner from './ManageShopBanner';
 import ManageShopTaxes from './ManageShopTaxes';
+import ManageShopLogo from './ManageShopLogo';
 
 class AddShop extends Component {
   constructor(props) {
@@ -71,6 +72,8 @@ class AddShop extends Component {
               </li>
               <li><a className={`${activeMenu == 'pics' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'pics')}>Restaurant Image</a>
               </li>
+              <li><a className={`${activeMenu === 'logo' ? "active" : ""}`} href="javascript:void(0);" onClick={(e) => this.toggle(e, 'logo')}>Restaurant Logo</a>
+              </li> {/* New menu option */}
               <li><a className={`${activeMenu == 'banner' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'banner')}>Banner</a>
               </li>
 
@@ -94,6 +97,10 @@ class AddShop extends Component {
               activeMenu == 'pics'
               ?
               <ManageShopImage shopId={this.state.shop_id}  setMenuStatus={this.setMenuStatus} />
+              :
+              activeMenu === 'logo' 
+              ? 
+              <ManageShopLogo shopId={this.state.shop_id} setMenuStatus={this.setMenuStatus} /> 
               :
               activeMenu == 'banner'
               ?

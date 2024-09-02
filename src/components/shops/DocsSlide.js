@@ -123,6 +123,181 @@
 
 
 
+// import React, { Component } from 'react';
+// import { toast } from 'react-toastify';
+// import { connect } from 'react-redux';
+// import EditShopDocs from './EditShopDocs';
+// import Modal from '../../Modal';
+// import Tooltip from '../common/Tooltip';
+// import moment from 'moment';
+// import { getShopDocsById, deleteShopDocument, deleteShopDocumentSuccess } from '../../actions/shops';
+// import { confirmAlert } from 'react-confirm-alert';
+// import 'react-confirm-alert/src/react-confirm-alert.css';
+// import DocumentDetails from './DocumentDetails'; // Import the DocumentDetails component
+
+// class DocsSlide extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       slideData: props.slideData,
+//       index: props.index,
+//       showDetails: false, // Track whether to show document details
+//       showModal: false,  // Track whether to show the modal for editing
+//     };
+//     this.editShopDocsPanel = this.editShopDocsPanel.bind(this);
+//     this.toggleDetails = this.toggleDetails.bind(this); // Bind the toggleDetails function
+//     this.toggleModal = this.toggleModal.bind(this); // Bind the toggleModal function
+//   }
+
+//   editShopDocsPanel() {
+//     this.setState({ showModal: true });
+//   }
+
+//   toggleDetails() {
+//     this.setState((prevState) => ({
+//       showDetails: !prevState.showDetails,
+//     }));
+//   }
+
+//   toggleModal() {
+//     this.setState((prevState) => ({
+//       showModal: !prevState.showModal,
+//     }));
+//   }
+
+//   deleteDocs(itemId, index) {
+//     confirmAlert({
+//       title: '',
+//       message: 'Are you sure you want to delete this document?',
+//       buttons: [
+//         {
+//           label: 'Yes',
+//           onClick: () => {
+//             deleteShopDocument({ documentId: itemId }).then((response) => {
+//               this.props.deleteShopDocumentSuccess(index);
+//               toast.success('Document deleted successfully!', {
+//                 position: toast.POSITION.TOP_RIGHT,
+//               });
+//             });
+//           },
+//         },
+//         {
+//           label: 'No',
+//         },
+//       ],
+//     });
+//   }
+
+//   renderColumns() {
+//     const { slideData } = this.state;
+
+//     switch (slideData.docs_type) {
+//       case 'Aadhar Card':
+//         return (
+//           <>
+//             <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
+//           </>
+//         );
+
+//       case 'PAN Card':
+//         return (
+//           <>
+//             <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
+//           </>
+//         );
+
+//       case 'GST':
+//         return (
+//           <>
+//             <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
+//           </>
+//         );
+
+//       case 'FSSAI':
+//         return (
+//           <>
+//             <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
+//             <td>{moment(slideData.expiry_date).format('ll')}</td>
+//           </>
+//         );
+
+//       case 'Upload Menu':
+//         return (
+//           <>
+//             <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
+//           </>
+//         );
+
+//       default:
+//         return (
+//           <>
+//             <td>{slideData.docs_type}</td>
+//           </>
+//         );
+//     }
+//   }
+
+//   render() {
+//     const { slideData, index, showDetails, showModal } = this.state;
+
+//     return (
+//       <>
+//         <tr>
+//           <td>{index + 1}</td>
+//           {this.renderColumns()}
+//           <td>
+//             <div className="table-btn-block">
+//               <Tooltip title="Edit">
+//                 <button className="btn edit-btn" onClick={this.editShopDocsPanel}>
+//                   <i className="material-icons">edit</i>
+//                 </button>
+//               </Tooltip>
+//               <Tooltip title="Delete">
+//                 <button className="btn delete-btn" onClick={() => this.deleteDocs(slideData.id, index)}>
+//                   <i className="material-icons">delete</i>
+//                 </button>
+//               </Tooltip>
+//             </div>
+//           </td>
+//         </tr>
+//         {showDetails && (
+//           <tr>
+//             <td colSpan="4">
+//               <DocumentDetails
+//                 docType={slideData.docs_type}
+//                 docName={slideData.docs_type}
+//                 link={slideData.link_to_file || slideData.links_to_menu}
+//                 images={slideData.files || []}
+//                 expiryDate={slideData.expiry_date ? moment(slideData.expiry_date).format('LL') : ''}
+//               />
+//             </td>
+//           </tr>
+//         )}
+//         {showModal && (
+//           <Modal
+//             id="edit-doc-modal"
+//             show={true}
+//             onHide={this.toggleModal}
+//             header={<h4 className="modal-title">Edit {slideData.docs_type} Document</h4>}
+//             body={<EditShopDocs docsDetail={slideData} />}
+//           />
+//         )}
+//       </>
+//     );
+//   }
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     deleteShopDocumentSuccess: (payload) => {
+//       dispatch(deleteShopDocumentSuccess(payload));
+//     },
+//   };
+// };
+
+// export default connect(null, mapDispatchToProps)(DocsSlide);
+
+
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import { connect } from 'react-redux';
@@ -133,7 +308,7 @@ import moment from 'moment';
 import { getShopDocsById, deleteShopDocument, deleteShopDocumentSuccess } from '../../actions/shops';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import DocumentDetails from './DocumentDetails'; // Import the DocumentDetails component
+import DocumentDetails from './DocumentDetails';
 
 class DocsSlide extends Component {
   constructor(props) {
@@ -141,12 +316,12 @@ class DocsSlide extends Component {
     this.state = {
       slideData: props.slideData,
       index: props.index,
-      showDetails: false, // Track whether to show document details
-      showModal: false,  // Track whether to show the modal for editing
+      showDetails: false,
+      showModal: false,
     };
     this.editShopDocsPanel = this.editShopDocsPanel.bind(this);
-    this.toggleDetails = this.toggleDetails.bind(this); // Bind the toggleDetails function
-    this.toggleModal = this.toggleModal.bind(this); // Bind the toggleModal function
+    this.toggleDetails = this.toggleDetails.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   editShopDocsPanel() {
@@ -188,55 +363,6 @@ class DocsSlide extends Component {
     });
   }
 
-  renderColumns() {
-    const { slideData } = this.state;
-
-    switch (slideData.docs_type) {
-      case 'Aadhar Card':
-        return (
-          <>
-            <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
-          </>
-        );
-
-      case 'PAN Card':
-        return (
-          <>
-            <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
-          </>
-        );
-
-      case 'GST':
-        return (
-          <>
-            <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
-          </>
-        );
-
-      case 'FSSAI':
-        return (
-          <>
-            <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
-            <td>{moment(slideData.expiry_date).format('ll')}</td>
-          </>
-        );
-
-      case 'Upload Menu':
-        return (
-          <>
-            <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>{slideData.docs_type}</td>
-          </>
-        );
-
-      default:
-        return (
-          <>
-            <td>{slideData.docs_type}</td>
-          </>
-        );
-    }
-  }
-
   render() {
     const { slideData, index, showDetails, showModal } = this.state;
 
@@ -244,7 +370,9 @@ class DocsSlide extends Component {
       <>
         <tr>
           <td>{index + 1}</td>
-          {this.renderColumns()}
+          <td onClick={this.toggleDetails} style={{ cursor: 'pointer', color: '#007bff' }}>
+            {slideData.docs_type}
+          </td>
           <td>
             <div className="table-btn-block">
               <Tooltip title="Edit">
@@ -261,8 +389,12 @@ class DocsSlide extends Component {
           </td>
         </tr>
         {showDetails && (
-          <tr>
-            <td colSpan="4">
+          <Modal
+            id="details-modal"
+            show={true}
+            onHide={this.toggleDetails}
+            header={<h4 className="modal-title">{slideData.docs_type} Details</h4>}
+            body={
               <DocumentDetails
                 docType={slideData.docs_type}
                 docName={slideData.docs_type}
@@ -270,8 +402,8 @@ class DocsSlide extends Component {
                 images={slideData.files || []}
                 expiryDate={slideData.expiry_date ? moment(slideData.expiry_date).format('LL') : ''}
               />
-            </td>
-          </tr>
+            }
+          />
         )}
         {showModal && (
           <Modal

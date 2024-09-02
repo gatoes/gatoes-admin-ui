@@ -230,6 +230,13 @@ export const ROUTES = {
     component: load('shops/DocsListing'),
     acl: 'SHOPS_DOCUMENTS'
   },
+  SHOPDOCSLISTINGAADHAR: { 
+    path: '/dashboard/shopdocuments/:index/1',
+    exact: true,
+    component: load('shops/DocsListing'),
+    acl: 'SHOPS_DOCUMENTS_AADHAR'
+  },
+  
   DRIVERREGIONGROUP: { 
     path: '/dashboard/driverregiongroups',
     exact: true,

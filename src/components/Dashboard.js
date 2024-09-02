@@ -98,6 +98,7 @@ class Dashboard extends Component {
                     <ACLRoute {...ROUTES.EDITPROMOCODE} />
                     <ACLRoute {...ROUTES.RIDERDOCSLISTING} />
                     <ACLRoute {...ROUTES.SHOPDOCSLISTING} />
+                    <ACLRoute {...ROUTES.SHOPDOCSLISTINGAADHAR}/>
                     <ACLRoute {...ROUTES.DRIVERREGIONGROUP} />
                     <ACLRoute {...ROUTES.ADDDRIVERREGIONGROUP} />
                     <ACLRoute {...ROUTES.EDITDRIVERREGIONGROUP} />
