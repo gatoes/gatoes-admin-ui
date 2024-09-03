@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { getCouponsByIdUsingMicroservice, isBroadcastSuccess, savePromoCodeUsingMicroservice, updatePromoCodeUsingMicroservice } from '../../actions/newpromocodes';
 import { getmenulistNew, getshopcategoryNew } from '../../actions/shops';
 
+import TermsAndConditions from './Terms';
+
 class AddNewPromoCode extends Component {
   constructor(props) {
     super(props);
@@ -1117,6 +1119,8 @@ enrichPayloadArrays(zoneArray, regionArray, restaurantArray, categoryArray, item
                 isActionUpdate={this.isActionUpdate}
 
                   />
+
+<TermsAndConditions/>  
                   
                 {/* <RenderBusinessZoneCondition/> */}
                 <PromoNewCodeCondition hideItemCategory={hideItemCategory} />

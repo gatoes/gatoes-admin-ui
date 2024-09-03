@@ -34,11 +34,13 @@ class BasicRevenueAnalytics extends Component {
       var revenue = [];
       var completedorder = [];
       
-      sortedData && sortedData.length > 0 && sortedData.map((obj, index) => (
-        revenue.push(parseFloat(obj.revenue.toFixed(2))),   
-        completedorder.push(obj.completedorder),   
-        dayz.push(obj._id)
-      ))
+      sortedData && sortedData.length > 0 && sortedData.forEach((obj, index) => {
+        const revenueValue = obj.revenue != null ? parseFloat(obj.revenue).toFixed(2) : 0;  // Ensure revenue is not null or undefined
+        revenue.push(parseFloat(revenueValue));   
+        completedorder.push(obj.completedorder);   
+        dayz.push(obj._id);
+      });
+      
     }
 
       
@@ -132,3 +134,5 @@ class BasicRevenueAnalytics extends Component {
   	}
 }
 export default BasicRevenueAnalytics;
+
+

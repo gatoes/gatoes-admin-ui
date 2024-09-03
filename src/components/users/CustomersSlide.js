@@ -116,6 +116,8 @@ class CustomersSlide extends Component {
         <td>{ slideData.referralUse ?  slideData.referralUse : null }</td>
 
         <td>{ slideData.totalOrders }</td>
+        <td>{ slideData.totalsaving? slideData.totalsaving:0 }</td>
+        <td>{ slideData.referralearning?slideData.referralearning:0 }</td>
         <td>{moment(slideData.registered_at).format('ll')}</td>
 
         <td>

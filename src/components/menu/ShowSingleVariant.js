@@ -20,7 +20,16 @@ export default class ShowSingleVariant extends Component {
             label="Item Pricing"
             placeholder={currencyFormat(0)}
             notes="(Excluding all taxes)"
-            parentDivClass="w-36"
+            parentDivClass="w-24"
+          />
+            <Field
+            name="Offer Price"
+            component={renderField}
+            type="number"
+            className="form-control"
+            label="Offer Price"
+            placeholder={currencyFormat(0)}
+            parentDivClass="w-24"
           />
           <Field
             name="packaging_charges"
@@ -29,7 +38,7 @@ export default class ShowSingleVariant extends Component {
             className="form-control"
             label="Packaging Charges"
             placeholder={currencyFormat(0)}
-            parentDivClass="w-36"
+            parentDivClass="w-24"
           />
         </div>
         <div className="col-lg-12"> 

@@ -121,6 +121,8 @@ class Customers extends Component {
                         <th className="manage-content">Refferal Code</th>
                         <th className="manage-content">Refferal Use</th>
                         <th>Total Orders</th>
+                        <th>Total Saving</th>
+                        <th>Refferal Earning</th>
                         <th className="manage-content">Joining Date</th>
                         <th>Action</th>
                         <th>Wallet Balance</th>

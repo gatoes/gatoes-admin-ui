@@ -37,6 +37,7 @@ class AddMenuItem extends Component {
       finalPrice: 0,
       itemPricing: 0,
       packagePricing: 0,
+      offerPricing:0,
       isAddon: false
     }
     this.handleAllChecked = this.handleAllChecked.bind(this);
