@@ -94,7 +94,7 @@ class LeftNavigation extends Component {
             null
           }
           {
-            getAclChecks('ZONE_VIEW_ONLY') || getAclChecks('DELIVERY_REGION_VIEW_ONLY') || getAclChecks('BUSINESS_ZONE_VIEW_ONLY') || getAclChecks('SHOPS_VIEW_ONLY') || getAclChecks('SHOPS_DOCUMENTS') || getAclChecks('SHOP_MENU_VIEW_ONLY') || getAclChecks('SHOP_CATEGORY_VIEW_ONLY') || getAclChecks('RIDERS_VIEW_ONLY') || getAclChecks('RIDERS_DOCUMENTS') || getAclChecks('RIDER_REGION_GROUP_VIEW_ONLY') || getAclChecks('REQUESTED_MENU_ITEM') || getAclChecks('ROLES_VIEW_ONLY') || getAclChecks('STAFF_VIEW_ONLY')
+            getAclChecks('ZONE_VIEW_ONLY') || getAclChecks('DELIVERY_REGION_VIEW_ONLY') || getAclChecks('BUSINESS_ZONE_VIEW_ONLY') || getAclChecks('SHOPS_VIEW_ONLY') || getAclChecks('SHOPS_DOCUMENTS') || getAclChecks('SHOP_MENU_VIEW_ONLY') || getAclChecks('SHOP_CATEGORY_VIEW_ONLY') || getAclChecks('RIDERS_VIEW_ONLY') || getAclChecks('RIDERS_DOCUMENTS') || getAclChecks('RIDER_REGION_GROUP_VIEW_ONLY') || getAclChecks('REQUESTED_MENU_ITEM') || getAclChecks('ROLES_VIEW_ONLY') || getAclChecks('STAFF_VIEW_ONLY')|| getAclChecks('ONBOARDING_DOCUMENTS')
             ?
             <li className="dropdown">
               <a exact activeClassName="active" href="javascript:void(0)" onClick={() => this.setManageStatus(managePanel)} className="nav-link list-group-item">
@@ -151,6 +151,18 @@ class LeftNavigation extends Component {
                     <li>
                       <NavLink exact activeClassName="active" className="nav-link list-group-item" to='/dashboard/shoplisting'>
                        <p>Restaurants</p>
+                      </NavLink>
+                    </li>
+                    :
+                    null
+                  }
+
+                  {
+                    getAclChecks('ONBOARDING_VIEW_ONLY')
+                    ?
+                    <li>
+                      <NavLink exact activeClassName="active" className="nav-link list-group-item" to='/dashboard/onboarding'>
+                       <p>Onboarding</p>
                       </NavLink>
                     </li>
                     :

@@ -31,6 +31,26 @@ class OrderInfo extends Component {
                   <li><label>Order ID</label><p>{orderinfo.orderId}</p></li>
                   <li> <label>Total Price</label><p>{orderinfo.currencySymbol + totPrice}</p> </li>
                   <li><label>Payment Type</label><p>{ PAYMENT_TYPE[orderinfo.paymentType].label }</p></li>
+                  <li>
+                  <label style={{ fontWeight: 'bold' }}>
+                      Don't Send Cutlery
+                    </label>
+                    <input
+                      type="checkbox"
+                      checked={iteminfo.cutlery === true} // If cutlery is true, check the checkbox
+                      disabled
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        marginRight: '10px',
+                        cursor: 'not-allowed',
+                        backgroundColor: iteminfo.cutlery ? '#00c853' : '#f0f0f0', // Green if checked, grey otherwise
+                        borderColor: iteminfo.cutlery ? '#00c853' : '#ccc',
+                        borderRadius: '4px',
+                      }}
+                    />
+                   
+                  </li>
                   {
                     orderinfo.riderSuggestion
                     ?
@@ -126,9 +146,46 @@ class OrderInfo extends Component {
                             }
                           </div>
                         </div>
-                        <div className="right-ui">
+                        {/* <div className="right-ui">
                           <span>{itm.currencySymbol+itm && itm.cartPrice && itm.cartPrice}</span>
+                        </div> */}
+                        
+                        {/* <div className="right-ui">
+                          {itm.offerPrice ? (
+                            <>
+                             
+                             <span style={{ textDecoration: 'line-through', marginRight: '10px', color: '#b0b0b0' }}>
+                                {itm.currencySymbol + itm.cartPrice}
+                              </span>
+                             
+                              <span>
+                                {itm.currencySymbol + (itm.cartPrice - itm.offerPrice)}
+                              </span>
+                            </>
+                          ) : (
+                            
+                            <span>{itm.currencySymbol + itm.cartPrice}</span>
+                          )}
+                        </div> */}
+                        <div className="right-ui">
+                          {true ? (  // Force it to always show the crossed-out and discounted prices for testing
+                            <>
+                              {/* Show the original price with strikethrough */}
+                              <span style={{ textDecoration: 'line-through', marginRight: '10px', color: '#b0b0b0' }}>
+                                ₹250
+                              </span>
+                              {/* Show the discounted price */}
+                              <span>
+                                ₹150
+                              </span>
+                            </>
+                          ) : (
+                            // If no offerPrice, show the original price
+                            <span>₹250</span>
+                          )}
                         </div>
+
+
                         {
                           itm.suggestion ?  <p>{ itm.suggestion }</p> : null
                         }

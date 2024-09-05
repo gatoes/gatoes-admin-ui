@@ -152,7 +152,10 @@ export const PAYMENT_TYPE = [
   { value: '0', label: 'Cash' },
   { value: '1', label: 'Online Payment' },
   { value: '2', label: 'Wallet' },
-  { value: '3', label: 'Debit Card' }
+  { value: '3', label: 'Debit Card' },
+  { value: '4', label: 'UPI'},
+  { value: '5', label: 'NetBanking'},
+  { value: '6', label: 'Credit Card'},
 ];
 
 export const RIDER_WORK_STATUS = [

@@ -117,7 +117,8 @@ class CustomersSlide extends Component {
 
         <td>{ slideData.totalOrders }</td>
         <td>{ slideData.totalsaving? slideData.totalsaving:0 }</td>
-        <td>{ slideData.referralearning?slideData.referralearning:0 }</td>
+        <td>{ slideData.savedonfood?slideData.savedonfood:0 }</td>
+        <td>{ slideData.savedondeliveries?slideData.savedondeliveries:0 }</td>
         <td>{moment(slideData.registered_at).format('ll')}</td>
 
         <td>
