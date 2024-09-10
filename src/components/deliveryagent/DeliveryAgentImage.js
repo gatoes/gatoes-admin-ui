@@ -32,20 +32,48 @@ export default class DeliveryAgentImage extends Component {
     });
   }
 
-  imageOnLoad(res){
-    res = JSON.parse(res);
-    if(res.message == 'success'){
-      this.setState({
-        init: false,
-        itemImageUrl: null
-      });
+  // imageOnLoad(res){
+  //   res = JSON.parse(res);
+  //   if(res.message == 'success'){
+  //     this.setState({
+  //       init: false,
+  //       itemImageUrl: null
+  //     });
       
-      this.props.getAgentImage(res.data[0].id);
-      return res.data[0].id
+  //     this.props.getAgentImage(res.data[0].id);
+  //     return res.data[0].id
+  //   } else {
+  //     alert('Invalid image type, please upload gif/jpeg/jpg type only.')
+  //   }
+  // }
+
+  imageOnLoad(res) {
+    console.log("res", res);
+    res = JSON.parse(res);
+    console.log("success");
+
+    // Check if the success flag is true
+    if (res.success === true) {
+        this.setState({
+            init: false,
+            itemImageUrl: null
+        });
+        console.log(res, '111', this.state.itemImageUrl);
+
+        // Access the files array and get the id or other data you need
+        this.props.getAgentImage(res.data.id);
+        console.log("res data", res.data.id);
+
+        return res.data.id; // Ensure you're returning the correct ID
     } else {
-      alert('Invalid image type, please upload gif/jpeg/jpg type only.')
+        // Remove the alert and handle the invalid image type without showing an alert
+        console.error('Invalid image type, please upload gif/jpeg/jpg type only.');
+        
+        // Optionally, handle the error differently without showing an alert
+        this.setState({ errorMessage: 'Invalid image type, please upload gif/jpeg/jpg type only.' });
     }
-  }
+}
+
 
   render() {
     

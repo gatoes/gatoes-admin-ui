@@ -13,10 +13,12 @@ class EditShop extends Component {
     super(props);
     this.state = {
       activeMenu : 'info',
-      shop_id: this.props.match.params.index
+      shop_id: this.props.match.params.index,
+      isApprovalRequired: this.props.location && this.props.location.state && this.props.location.state.isApprovalRequired ? this.props.location.state.isApprovalRequired : false
     }
     this.setMenuStatus = this.setMenuStatus.bind(this);
     this.toggle = this.toggle.bind(this);
+    
   }
 
   toggle(e, activeMenu){
@@ -39,7 +41,7 @@ class EditShop extends Component {
   
 
   render() {
-    const {activeMenu} = this.state;
+    const {activeMenu,isApprovalRequired} = this.state;
     console.log('activeMenu1', activeMenu);
     return (
       <div className="container ani-ui-block shop-manager">
@@ -85,7 +87,11 @@ class EditShop extends Component {
             ?
             <ManageShopImage shopId={this.state.shop_id} setMenuStatus={this.setMenuStatus} />
             :
-            <ManageShopBanner shopId={this.state.shop_id} />
+            <ManageShopBanner
+            shopId={this.state.shop_id}
+            setMenuStatus={this.setMenuStatus}
+            isApprovalRequired={isApprovalRequired}
+          />
           }
         
 

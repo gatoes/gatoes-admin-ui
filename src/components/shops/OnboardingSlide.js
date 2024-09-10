@@ -92,9 +92,27 @@ class OnboardingSlide extends Component {
         <td>{slideData.activationDate}</td>
         <td>{slideData.completionDate}</td>
         <td>{slideData.status}</td>
-        <td>
+        {/* <td>
             <button className="btn btn-primary table-btn-block" onClick={() => this.showRestaurantDetail}>View</button>
-          </td>
+        </td> */}
+     <td>
+  {
+    getAclChecks('SHOPS_ADD_EDIT')
+    ?
+    <Link to={{
+      pathname: "/dashboard/editshop/" + slideData.shopId,
+      state: { isApprovalRequired: slideData.status === 'Pending' } // Pass the status as a prop
+    }}>
+      <button className="btn btn-primary table-btn-block" style={{ backgroundColor: '#007bff', color: 'white', textAlign: 'center', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        View
+      </button>
+    </Link>
+    :
+    null
+  }
+</td>
+
+
         <td>
           <div className="more-btn-ui table-btn-block">
             <button className="btn more-btn" data-toggle="dropdown" aria-expanded="false">More</button>

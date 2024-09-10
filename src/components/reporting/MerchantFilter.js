@@ -161,4 +161,4 @@ class MerchantFilter extends Component {
 	}
 }
 
-export default withRouter(MerchantFilter)
+export default withRouter(MerchantFilter)	

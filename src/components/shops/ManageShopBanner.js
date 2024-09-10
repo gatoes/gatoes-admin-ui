@@ -18,10 +18,16 @@ class ManageShopBanner extends Component {
       is_submitting: false,
       status: props.status,
       shopId: props.shopId,
-      itemImageUrl: null
+      itemImageUrl: null,
+      showApprovalModal: false // State to control the modal visibility
     }
     this.getItemImage = this.getItemImage.bind(this);
+    this.toggleApprovalModal = this.toggleApprovalModal.bind(this);
+  }
 
+
+  toggleApprovalModal() {
+    this.setState({ showApprovalModal: !this.state.showApprovalModal });
   }
 
   componentWillMount(){
@@ -49,8 +55,8 @@ class ManageShopBanner extends Component {
   }
 
   render() {
-    const {handleSubmit, pristine, submitting, cuisineList, shopId} = this.props;
-    const {itemImageUrl} = this.state;
+    const {handleSubmit, pristine, submitting, cuisineList, shopId,isApprovalRequired} = this.props;
+    const {itemImageUrl,showApprovalModal} = this.state;
     console.log('aa', this.props.shopId);
     return (
       <form onSubmit={handleSubmit(this.submitBannerForm.bind(this))}>
@@ -118,7 +124,17 @@ class ManageShopBanner extends Component {
                </div>
               <div className="row save-button-block">
                 <div className="col-sm-12 align-self-center">
-                  <button type="submit" disabled={submitting} className="btn green-btn">Submit details{submitting && <i className="fa fa-spinner fa-spin"></i>}</button>
+                {
+                  isApprovalRequired ? (
+                    <button type="button" className="btn green-btn" onClick={this.toggleApprovalModal}>
+                      Approve and Submit {submitting && <i className="fa fa-spinner fa-spin"></i>}
+                    </button>
+                  ) : (
+                    <button type="submit" disabled={submitting} className="btn green-btn">
+                      Submit Details {submitting && <i className="fa fa-spinner fa-spin"></i>}
+                    </button>
+                  )
+                }
                   
                 </div>
               </div>
@@ -126,6 +142,73 @@ class ManageShopBanner extends Component {
             </div>
           </div>
         </div>
+        {this.state.showApprovalModal && (
+  <div
+    style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: 'rgba(0, 0, 0, 0.4)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1050,
+    }}
+    onClick={this.toggleApprovalModal} // Close the modal when clicking on the overlay
+  >
+    <div
+      style={{
+        background: 'white',
+        borderRadius: '8px',
+        padding: '20px',
+        width: '300px',
+        textAlign: 'center',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      }}
+      onClick={(e) => e.stopPropagation()} // Prevent the modal itself from closing when clicking inside it
+    >
+      <div style={{ marginBottom: '20px' }}>
+        <p>Do you want to approve this restaurant?</p>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={handleSubmit(this.submitBannerForm.bind(this))}
+          style={{
+            backgroundColor: '#007bff',
+            border: 'none',
+            padding: '10px 20px',
+            color: 'white',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+        >
+          Yes
+        </button>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={this.toggleApprovalModal}
+          style={{
+            backgroundColor: '#6c757d',
+            border: 'none',
+            padding: '10px 20px',
+            color: 'white',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+        >
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
       </form>
     );
   }
