@@ -111,15 +111,13 @@ class NewPromoCodeSlide extends Component {
 	render() {
       const { slideData, index, lang } = this.state;
       const stats = slideData.status ? 0 : 1;
-
       const fullScreenStats = slideData && slideData.showOnRestaurant ? 0 : 1;
-
-     console.log(slideData,"STTTAus")
-
     	return (
         <tr className="drag-promo-element">
           {this.props.component}
-          <td>{ parseInt(parseInt(index+1)) }</td>
+
+          {/* <td>{ parseInt(parseInt(index+1)) }</td> */}
+          <td>{ parseInt(index+1) }</td>
           <td>
           <Link to={"/dashboard/newpromodetail/"+ slideData.id }>
             {slideData.isCreatedByAdmin ? "Admin" : "Merchant"}
