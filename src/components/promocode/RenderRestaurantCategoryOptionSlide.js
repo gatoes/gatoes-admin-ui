@@ -29,8 +29,9 @@ class RenderRestaurantCategoryOptionSlide extends Component {
 
   handleShops(e){
     restaurantCategoryListing({shopId : e.shopId}).then((response) => {
+      console.log("here for the category",response)
       this.setState({
-        shopCategoryList: response.data.data
+        shopCategoryList: response.data.data.categories
       });
     })
   }

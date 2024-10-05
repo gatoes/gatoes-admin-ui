@@ -20,7 +20,7 @@ class BasicLocationAnalyticsGraph extends Component {
       var orders = [];
       let currecySymbol = getCurrencySymbol();
       locationData && locationData.length > 0 && locationData.map((obj, index) => (
-        revenue.push(parseFloat(obj.revenue.toFixed(2))),   
+        revenue.push(parseFloat((obj.revenue || 0).toFixed(2))),   
         orders.push(obj.completedorder),
         locations.push(obj.name)
       ))

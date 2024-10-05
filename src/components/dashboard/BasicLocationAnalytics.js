@@ -60,6 +60,7 @@ class BasicLocationAnalytics extends Component {
       });
     }
 
+    
   	render() {
       const {activeMenu, records} = this.state;
       const {locationDetails} = this.props;

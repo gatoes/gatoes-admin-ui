@@ -17,8 +17,8 @@ class ShowOrderDetail extends Component {
 
   render() {
     const {slideData} = this.state;
-    const receiverData = slideData.receiver || { fullName: 'Ramesh', phoneNumber: '7657657655', countryCode: '91' };
-    const refundData = slideData.refund || { mode: 'Credit Card', amount: '100', status: 'Pending' };
+    const receiverData = slideData.receiver;
+    const refundData = slideData.refund;
 
     return (
       <div className="order-details-block-ui">
@@ -30,14 +30,14 @@ class ShowOrderDetail extends Component {
             <OrderReceiverInfo receiverinfo={slideData.receiver} />
           )
         } */}
-         <OrderReceiverInfo receiverinfo={receiverData} /> {/* Pass receiverData */}
+         {receiverData && <OrderReceiverInfo receiverinfo={receiverData} />} {/* Pass receiverData */}
 
           {/* Call the RefundStatus component */}
         {/* {slideData.refund && (
           <RefundStatus refundInfo={slideData.refund} />
         )} */}
 
-<RefundStatus refundInfo={refundData} />
+        { refundData &&  <RefundStatus refundInfo={refundData} />}
         
         {
           slideData.deliveryAgent

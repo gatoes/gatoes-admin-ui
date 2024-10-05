@@ -77,7 +77,7 @@ class Dashboard extends Component {
                     <ACLRoute {...ROUTES.MANAGESHOPS} />
                     <ACLRoute {...ROUTES.ADDNEWSHOP} />
                     <ACLRoute {...ROUTES.EDITSHOP} />
-                    <ACLRoute {...ROUTES.ONBOARDING} />
+                    {/* <ACLRoute {...ROUTES.ONBOARDING} /> */}
                     <ACLRoute {...ROUTES.ONBOARDINGDOCSLISTING}/>
                     <ACLRoute {...ROUTES.MANAGEDELIVERYAGENT} />
                     <ACLRoute {...ROUTES.ADDNEWDELIVERYAGENT} />

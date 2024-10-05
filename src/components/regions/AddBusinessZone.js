@@ -24,6 +24,10 @@ class AddBusinessZone extends Component {
       this.bindSlider();
     });
 
+    if (window.google && window.google.maps) {
+      this.bindSlider();
+    }
+
     if(document.readyState === "complete" || document.readyState === "interactive"){
       this.bindSlider();
     }

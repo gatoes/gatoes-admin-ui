@@ -116,7 +116,6 @@ class PromoCodeSlide extends Component {
 
       var couponType = '';
       var couponVal = '';
-
       if(slideData.coupon == 1){
         couponVal = slideData.coupon_code.length > 1 ? slideData.coupon_code.length + " coupons" : slideData.coupon_code.length + " coupon";
         couponType = 'specific coupon';

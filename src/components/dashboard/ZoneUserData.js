@@ -22,6 +22,7 @@ class ZoneUserData extends Component {
 
 	downloadResult(){
 		getZoneNewOldUserData({'is_csv': true, 'is_all': true}).then((response) => {	
+			console.log("response for csv",response)
 			this.setState({
 				startDownload: response
 			});
@@ -38,7 +39,10 @@ class ZoneUserData extends Component {
 
 
   	render() {
+		console.log("user data check",this.state )
   		const {zoneUser, startDownload } = this.state;
+		console.log("zone user",zoneUser,startDownload)
+		const zoneUserData = zoneUser.data || [];
   		
   		if(startDownload !== null){
   			this.setState({
@@ -74,7 +78,7 @@ class ZoneUserData extends Component {
 		                        		</thead>
 		                        		<tbody>
 			                           		{
-			                           			zoneUser && zoneUser.length>0 && zoneUser.map((obj, index) => (
+			                           			zoneUserData && zoneUserData.length>0 && zoneUserData.map((obj, index) => (
 			                           				<tr>
 			                           					<td>{ parseInt(index+1) }</td>
 			                           					<td>{obj.name}</td>

@@ -10,7 +10,8 @@ import arrayMove from 'array-move';
 const DragHandle = sortableHandle(() => <td><span className="sort_icon"></span></td>);
 
 
-const SortableItem = sortableElement(({slideData, index, updatePromoFullScreen}) => <PromoCodeSlide slideData={slideData} index={index} updatePromoFullScreen={updatePromoFullScreen} component={<DragHandle />} />);
+const SortableItem = sortableElement(({slideData,counting,updatePromoFullScreen}) => (<PromoCodeSlide slideData={slideData} index={counting} updatePromoFullScreen={updatePromoFullScreen} component={<DragHandle />} />)
+);
 
 const SortableContainer = sortableContainer(({children}) => {
   return <tbody>{children}</tbody>;
@@ -52,6 +53,7 @@ class Listing extends Component {
   }
 
   onSortEnd({oldIndex, newIndex}){
+    console.log("old new index position",oldIndex,newIndex)
     changePromoPosition({oldPosition: this.state.promoCodeListing[oldIndex].position, newPosition: this.state.promoCodeListing[newIndex].position, promoId: this.state.promoCodeListing[oldIndex].id}).then((response) => {
       this.setState({
         promoCodeListing: response.data.data
@@ -103,8 +105,8 @@ class Listing extends Component {
                     </thead>
                     <SortableContainer onSortEnd={this.onSortEnd.bind(this)} useDragHandle>
                       {
-                        promoCodeListing && promoCodeListing.length > 0 && promoCodeListing.map((obj, index) => (
-                          <SortableItem key={obj.id} slideData = {obj} index={index} updatePromoFullScreen={this.updatePromoFullScreen} />
+                        promoCodeListing && promoCodeListing.length > 0 && promoCodeListing.map((obj, index) =>  (
+                          <SortableItem key={obj.id} slideData = {obj} index={index} updatePromoFullScreen={this.updatePromoFullScreen} counting={index}/>
                         ))
                       }
                     </SortableContainer>

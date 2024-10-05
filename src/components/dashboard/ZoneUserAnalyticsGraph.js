@@ -12,7 +12,7 @@ class ZoneUserAnalyticsGraph extends Component {
 
   	render() {
       const {userData} = this.props;
-      //console.log('userData', userData);
+      console.log('userData', userData);
       var location = [];
       var oldUser = [];
       var newUser = [];

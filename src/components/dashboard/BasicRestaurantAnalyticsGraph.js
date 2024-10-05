@@ -21,7 +21,7 @@ class BasicRestaurantAnalyticsGraph extends Component {
       let currecySymbol = getCurrencySymbol();
       
       shopData && shopData.length > 0 && shopData.map((obj, index) => (
-        revenue.push(parseFloat(obj.revenue.toFixed(2))),   
+        revenue.push(parseFloat((obj.revenue || 0).toFixed(2))),   
         orders.push(obj.completedorder),
         shopName.push(obj.shopName)
       ))
