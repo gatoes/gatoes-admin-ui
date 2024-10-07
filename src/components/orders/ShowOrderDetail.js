@@ -17,8 +17,8 @@ class ShowOrderDetail extends Component {
 
   render() {
     const {slideData} = this.state;
-    const receiverData = slideData.receiver;
-    const refundData = slideData.refund;
+    const receiverData = slideData.receiver || { fullName: 'Ramesh', phoneNumber: '7657657655', countryCode: '91' };
+    const refundData = slideData.refund|| { mode: 'Credit Card', amount: '100', status: 'Pending' };
 
     return (
       <div className="order-details-block-ui">

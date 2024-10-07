@@ -9,18 +9,18 @@ import { addCuisines, addCuisinesSuccess } from '../../actions/shops';
 import ShopCategoryImage from '../shops/ShopCategoryImage';
 
 class AddCuisines extends Component {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     itemImageUrl:null
-  //   }
-  //   this.getImage = this.getImage.bind(this);
-  // }
+  constructor(props){
+    super(props);
+    this.state = {
+      itemImageUrl:null
+    }
+    this.getImage = this.getImage.bind(this);
+  }
 
 
-  // getImage(imageId){
-  //   this.props.change('image', imageId);
-  // }
+  getImage(imageId){
+    this.props.change('image', imageId);
+  }
   
   
   submitMenuForm(values){
@@ -51,7 +51,7 @@ class AddCuisines extends Component {
                 label="Name"
                 placeholder=""
               />
-              {/* <ShopCategoryImage getImage={this.getImage} /> */}
+              <ShopCategoryImage getImage={this.getImage} />
             </div>
           </div>
         </div>

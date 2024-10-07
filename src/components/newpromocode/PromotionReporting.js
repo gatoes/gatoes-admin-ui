@@ -23,8 +23,8 @@ class PromotionReporting extends Component {
   }
 
   downloadResult(){
-    promotionReporting({pageNumber : this.state.activePage, ...this.state.filters, is_csv: true}).then((response) => { 
-      console.log(response,"responseDownload") 
+    promotionReporting({...this.state.filters, is_csv: true}).then((response) => { 
+      console.log(response.data,"responseDownload") 
       this.setState({
         startDownload: response.data
       });
@@ -59,24 +59,37 @@ class PromotionReporting extends Component {
     const {merchantListing, activePage, filters, startDownload, status} = this.state;
     //const {merchantListing} = this.props;
     console.log('merchantListing', merchantListing);
-    var limit = 10;
-    var total = 0;
-    if(merchantListing && merchantListing.limit){
-      var srno = (activePage-1) * merchantListing.limit;
-      limit = merchantListing.limit;
-      total = merchantListing.total;
+    // var limit = 10;
+    // var total = 0;
+    // if(merchantListing && merchantListing.limit){
+    //   var srno = (activePage-1) * merchantListing.limit;
+    //   limit = merchantListing.limit;
+    //   total = merchantListing.total;
+    // } else {
+    //   var srno = 0;   
+    //   limit = 10;
+    //   total = 0
+    // }
+    let limit = 10;
+    let total = 0;
+    let srno = 0;
+
+    if (merchantListing && merchantListing.perPage && merchantListing.totalPages) {
+      limit = merchantListing.perPage;
+      total = merchantListing.totalRecords;
+      srno = (activePage - 1) * limit;
     } else {
-      var srno = 0;   
       limit = 10;
-      total = 0
+      total = 0;
+      srno = 0;
     }
 
     if(startDownload !== null){
       this.setState({
         startDownload: null
       });
-      console.log('startDownload', startDownload.data);
-      return <CSVDownload data={startDownload.data} target="_parent" />
+      console.log('startDownload', startDownload);
+      return <CSVDownload data={startDownload} target="_parent" />
     }
 
     return (

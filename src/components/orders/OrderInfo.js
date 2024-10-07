@@ -31,6 +31,26 @@ class OrderInfo extends Component {
                   <li><label>Order ID</label><p>{orderinfo.orderId}</p></li>
                   <li> <label>Total Price</label><p>{orderinfo.currencySymbol + totPrice}</p> </li>
                   <li><label>Payment Type</label><p>{ PAYMENT_TYPE[orderinfo.paymentType].label }</p></li>
+                  <li>
+                  <label style={{ fontWeight: 'bold' }}>
+                      Don't Send Cutlery
+                    </label>
+                    <input
+                      type="checkbox"
+                      checked={iteminfo.cutlery === true} // If cutlery is true, check the checkbox
+                      disabled
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        marginRight: '10px',
+                        cursor: 'not-allowed',
+                        backgroundColor: iteminfo.cutlery ? '#00c853' : '#f0f0f0', // Green if checked, grey otherwise
+                        borderColor: iteminfo.cutlery ? '#00c853' : '#ccc',
+                        borderRadius: '4px',
+                      }}
+                    />
+                   
+                  </li>
                   {
                     orderinfo.riderSuggestion
                     ?

@@ -17,13 +17,13 @@ class ReportingFilter extends Component {
 	      	status:0,
 	      	shopId : 0,
 	      	shopObj: null,
-	      	// zoneId: 0,
+	      	zoneId: 0,
 	      	shopListing: [],
 	      	regionListing: [],
 	      	startDate: null,
 	    	endDate: null,
-	    	// dateRangeString: moment().format("MM/DD/YYYY") + 
-	    	// ' - ' + moment().format("MM/DD/YYYY"),
+	    	 dateRangeString: moment().format("MM/DD/YYYY") + 
+	    	' - ' + moment().format("MM/DD/YYYY"),
 	      	...filters
 	    };
 	    this.onApply = this.onApply.bind(this);
@@ -111,8 +111,8 @@ class ReportingFilter extends Component {
 								    />
 			                  	</div>
 			                </div>
-			                {/*}
-			                <div className="col-sm-3 col-lg-4 col-xl-3">
+			                
+			                {/* <div className="col-sm-3 col-lg-4 col-xl-3">
 			                  	<div className="form-group">
 			                    	<label>Shop</label>
 				                    <select className="form-control selectbox-block" name="shopId" value={shopId}>
@@ -124,9 +124,9 @@ class ReportingFilter extends Component {
 				                      }
 				                    </select>
 			                  	</div>
-			                </div>
-			            	*/}
-			                {/* <div className="col-sm-3 col-lg-4 col-xl-3">
+			                </div> */}
+
+			                 <div className="col-sm-3 col-lg-4 col-xl-3">
 			                  	<div className="form-group">
 			                    	<label>Zone</label>
 				                    <select className="form-control selectbox-block" name="zoneId" value={zoneId}>
@@ -138,15 +138,15 @@ class ReportingFilter extends Component {
 				                      }
 				                    </select>
 			                  	</div>
-			                </div> */}
-			                {/* <div className="col-sm-3 col-lg-4 col-xl-3">
+			                </div> 
+			                 <div className="col-sm-3 col-lg-4 col-xl-3">
 			                 	<div className="form-group calender-block">
 			                    	<label>Choose Filter Date</label>
-			                    	<DateRangePicker startDate={startDate} endDate={endDate}  onApply={this.onApply}>
+			                    	<DateRangePicker startDate={startDate ? moment(startDate) : undefined} endDate={endDate ? moment(endDate) : undefined}  onApply={this.onApply}>
 								        <input type="text" value={dateRangeString} />
 								    </DateRangePicker>
 			                 	</div>
-			              	</div> */}
+			              	</div> 
 			              	<div className="col-sm-3 col-md-2 col-xl-2 align-self-center">
 			                  	<div className="filter-result-block">
 			                      	<button className="btn btn1" onClick={this.filterResult}>Save</button>

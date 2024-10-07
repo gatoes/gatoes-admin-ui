@@ -55,12 +55,12 @@ export const ROUTES = {
     component: load('shops/Listing'),
     acl: 'SHOPS_VIEW_ONLY'
   },
-  // ONBOARDING: { 
-  //   path: '/dashboard/onboarding',
-  //   exact: true,
-  //   component: load('shops/Onboarding'),
-  //   acl: 'ONBOARDING_VIEW_ONLY'
-  // },
+  ONBOARDING: { 
+    path: '/dashboard/onboarding',
+    exact: true,
+    component: load('shops/Onboarding'),
+    acl: 'ONBOARDING_VIEW_ONLY'
+  },
   ADDNEWSHOP: { 
     path: '/dashboard/addnewshop',
     exact: true,
