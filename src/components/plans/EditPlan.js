@@ -25,7 +25,7 @@ class EditPlan extends Component {
   }
 
   merchantZone (ids) {
-    console.log(ids.length, '53543543', ids);
+    // console.log(ids.length, '53543543', ids);
     // let zoneIds = JSON.stringify(typeof ids != 'undefined' ? ids : []);
     let zoneIds = Array.isArray(ids)
     ? ids.map(item => (typeof item === 'object' && item !== null ? item.id : item))
@@ -35,7 +35,7 @@ class EditPlan extends Component {
     
     // console.log(zoneIds,"zoneIds")
     // console.log(newZoneIds,"newZoneIds")
-    if(ids.length){
+    if(ids && ids.length){
       
       shopListingByZone({zoneId : newZoneIds}).then((response) => {
         this.setState({

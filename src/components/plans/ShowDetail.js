@@ -70,23 +70,23 @@ class ShowDetail extends Component {
             <div className="subsciption-id-ui">
               <ul>
                 {
-                  deliveryCharges && deliveryCharges.length > 0 && deliveryCharges.map((obj, index) => (
+                  slideData && slideData.user_delivery_charges && slideData.merchant_delivery_charges && (
                     <>
                     <li> 
                       <label>Range</label>
-                      <p>{ obj.range && obj.range }</p>
+                      {/* <p>{ obj.range && obj.range }</p> */}
                     </li>
                     <li> 
                       <label>User delivery charges</label>
-                      <p>{currency} { obj.user_delivery_charges && obj.user_delivery_charges }</p>
+                      <p>{currency} {  slideData.user_delivery_charges }</p>
                     </li>
                     <li> 
                       <label>Merchant delivery charges</label>
-                      <p>{currency}{ obj.merchant_delivery_charges && obj.merchant_delivery_charges }</p>
+                      <p>{currency}{ slideData.merchant_delivery_charges }</p>
                     </li>
                     </>
-                  ))
-                }
+                   )
+                 }
               </ul>
             </div>
           </div>
