@@ -27,6 +27,7 @@ export const SUPER_SHOP_LIST_SUCCESS = 'SUPER_SHOP_LIST_SUCCESS';
 export const DELETE_SUPER_MERCHANT = 'DELETE_SUPER_MERCHANT';
 
 const ROOT_URL = API_ROOT;
+const MERCHANT_URL = 'http://localhost:6969/api/v1'
 var token = "";
 
 export function shopListing(params) {
@@ -50,6 +51,14 @@ export function addNewShop(props){
     method: 'POST',
     data: props,
     url: `${ROOT_URL}/serviceprovider/addshop`
+  });
+}
+
+export function editShopDetails(props){
+  return axios({
+    method: 'POST',
+    data: props,
+    url: `${MERCHANT_URL}/shop/edit-shop-details`
   });
 }
 

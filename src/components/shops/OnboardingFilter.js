@@ -8,7 +8,7 @@ class OnboardingFilter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: '',
+      name: '',
       contact: '',
       startDate: moment().format("MM/DD/YYYY"),
       endDate: moment().format("MM/DD/YYYY"),
@@ -37,11 +37,11 @@ class OnboardingFilter extends Component {
   // Apply filters
   applyFilters = (e) => {
     e.preventDefault();
-    const { status, contact, startDate, endDate } = this.state;
+    const { name, contact, startDate, endDate } = this.state;
 
     // Create the filter object
     const filters = {
-      status,
+      name,
       contact,
       startDate,
       endDate,
@@ -52,26 +52,17 @@ class OnboardingFilter extends Component {
   };
 
   render() {
-    const { status, contact, dateRangeString } = this.state;
+    const { name, contact, dateRangeString } = this.state;
 
     return (
       <form onSubmit={this.applyFilters}>
         <div className="row filter-block" style={{ display: 'flex', alignItems: 'center' }}>
           {/* Status Filter */}
           <div className="col-sm-3 col-lg-3 col-xl-3">
-            <div className="form-group">
-              <label>Status</label>
-              <select
-                name="status"
-                className="form-control"
-                value={status}
-                onChange={this.handleChange}
-              >
-                <option value="">Choose Status</option>
-                <option value="Pending">Pending</option>
-                <option value="Completed">Completed</option>
-              </select>
-            </div>
+          <div className="form-group">
+	                    	<label>Restaurant Name</label>
+	                    	<input type="text" name="name" className="form-control" value={name} placeholder="eg. Mahak" />
+	                  	</div>
           </div>
 
           {/* Contact Filter */}

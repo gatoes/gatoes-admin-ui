@@ -5,7 +5,7 @@ import { reduxForm, Field, SubmissionError, reset } from 'redux-form';
 import renderFieldLabelTransition from '../FormFields/renderFieldLabelTransition';
 import renderField from '../FormFields/renderField';
 import renderReactSelect from '../FormFields/renderReactSelect';
-import { cuisineListing, cuisineListingSuccess, addNewShop, shopDetailById, categoryListing, getBankList } from '../../actions/shops';
+import { cuisineListing, cuisineListingSuccess, addNewShop, shopDetailById, categoryListing, getBankList, editShopDetails } from '../../actions/shops';
 import {toast} from 'react-toastify';
 import validate from './ValidateShop';
 import ShopImage from './ShopImage';
@@ -128,7 +128,7 @@ class EditBasicDetail extends Component {
 
   submitMenuForm(values){
     //console.log('values', values);
-    return addNewShop(values)
+    return editShopDetails(values)
     .then((result) => {
       toast.success('Restaurant basic info updated Successfully.');
       this.props.setMenuStatus('timing');
@@ -296,7 +296,7 @@ class EditBasicDetail extends Component {
                             parentDivClass="form-group w-100"
                           />
                         </div>
-                        <div className="col-lg-6">
+                        {/* <div className="col-lg-6">
                           <Field
                             name="accountManager"
                             component={renderField}
@@ -305,7 +305,7 @@ class EditBasicDetail extends Component {
                             label="Restaurant Manager Name"
                             placeholder="eg. Shah"
                           />
-                        </div>
+                        </div> */}
                       </div>
                       <div className="row">
                         <div className="col-lg-6">
@@ -639,12 +639,13 @@ class EditBasicDetail extends Component {
                     <div className="form-block">
                       <div className="row">
                         <div className="col-lg-6">
-                          <Field
-                            name="outlet_manager_name"
+                        <Field
+                            name="accountManager"
                             component={renderField}
                             type="text"
                             className="form-control"
-                            label="Manager Name"
+                            label="Outlet Manager Name"
+                            placeholder="eg. Shah"
                           />
                         </div>
                         <div className="col-lg-6">

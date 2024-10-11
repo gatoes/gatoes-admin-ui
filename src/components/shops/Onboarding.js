@@ -84,7 +84,7 @@ class Onboarding extends Component {
                           <th>Zone</th>
                           <th>Activation Date</th>
                           <th>Completion Date</th>
-                          <th>Status</th>
+                          {/* <th>Status</th> */}
                           <th>View</th>
                           <th>Actions</th>
                         </tr>

@@ -101,20 +101,20 @@ export const TRANSFER_TYPE = [
 ];
 
 export const TAG = [
-  { value: '0', label: 'Pure Veg' },
-  { value: '1', label: 'Women Lead' },
-  { value: '2', label:'Multi Brand Kitchen'}
+  { value: 0, label: 'Pure Veg' },
+  { value: 1, label: 'Women Lead' },
+  { value: 2, label:'Multi Brand Kitchen'}
 ];
 
 export const iswithGatoes = [
-  { value: '0', label: 'Yes' },
-  { value: '1', label: 'No' },
+  { value: 1, label: 'Yes' },
+  { value: 0, label: 'No' },
   
 ];
 
 export const ACCOUNT_TYPE_OPTIONS = [
-  { value: '0', label: 'SAVING' },
-  { value: '1', label: 'CURRENT' },
+  { value: 1, label: 'SAVING' },
+  { value: 0, label: 'CURRENT' },
   
 ];
 

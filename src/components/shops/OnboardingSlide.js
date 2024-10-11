@@ -91,7 +91,7 @@ class OnboardingSlide extends Component {
         <td>{slideData.zone}</td>
         <td>{slideData.activationDate}</td>
         <td>{slideData.completionDate}</td>
-        <td>{slideData.status}</td>
+        {/* <td>{slideData.status}</td> */}
         {/* <td>
             <button className="btn btn-primary table-btn-block" onClick={() => this.showRestaurantDetail}>View</button>
         </td> */}

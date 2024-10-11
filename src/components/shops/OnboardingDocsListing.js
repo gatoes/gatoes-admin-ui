@@ -1,7 +1,7 @@
 
 // import React, { Component } from 'react';
 // import Modal from '../../Modal';
-// import DocumentDetails from './DocumentDetails';
+// import DocumentOnboardingDetails from './DocumentOnboardingDetails';
 
 // class OnboardingDocsListing extends Component {
 //   constructor(props) {
@@ -114,7 +114,7 @@
 //                 show={showModal}
 //                 onHide={this.closeModal}
 //                 header={<h4 className="modal-title">{selectedDocument.docs_type} Details</h4>}
-//                 body={<DocumentDetails doc={selectedDocument} />}
+//                 body={<DocumentOnboardingDetails doc={selectedDocument} />}
 //               />
 //             )}
 //           </div>
@@ -127,7 +127,7 @@
 // export default OnboardingDocsListing;
 import React, { Component } from 'react';
 import Modal from '../../Modal';
-import DocumentDetails from './DocumentDetails';
+import DocumentOnboardingDetails from './DocumentOnboardingDetails';
 
 class OnboardingDocsListing extends Component {
   constructor(props) {
@@ -160,6 +160,11 @@ class OnboardingDocsListing extends Component {
       {
         docs_type: 'GST',
         details: 'GST Number: 12ABCDE1234F1Z5',
+        link_to_file: 'http://example.com/gst_certificate.pdf',
+      },
+      {
+        docs_type: 'MENU',
+        details: 'MENU Detail',
         link_to_file: 'http://example.com/gst_certificate.pdf',
       },
     ];
@@ -240,7 +245,7 @@ class OnboardingDocsListing extends Component {
                 show={showModal}
                 onHide={this.closeModal}
                 header={<h4 className="modal-title">{selectedDocument.docs_type} Details</h4>}
-                body={<DocumentDetails doc={selectedDocument} />}
+                body={<DocumentOnboardingDetails doc={selectedDocument} />}
               />
             )}
           </div>
