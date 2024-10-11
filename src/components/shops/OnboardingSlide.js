@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import {getAclChecks} from '../../utilities';
 import ShowRestaurantDetail from './ShowRestaurantDetail'
 import Modal from '../../Modal';
+import moment from 'moment';
 
 class OnboardingSlide extends Component {
   constructor(props) {
@@ -74,23 +75,23 @@ class OnboardingSlide extends Component {
 
   render() {
     const { slideData, index, srno,showRestaurantDetail } = this.state;
-
+    console.log("slide data status",slideData)
     return (
         <>
       <tr>
-        <td>{srno + index + 1}</td>
-        <td>{slideData.uniqueId}</td>
+        <td>{srno}</td>
+        <td>{slideData.unique_id}</td>
         <td>
         <a href="javascript:void(0)" onClick={this.showRestaurantDetail} style={{ cursor: 'pointer', color: '#007bff' }}>
-              {slideData.restaurantName}
+              {slideData.shopName}
             </a>
           </td>
-        <td>{slideData.ownerName}</td>
+        <td>{slideData.name}</td>
         <td>{slideData.email}</td>
-        <td>{slideData.contact}</td>
+        <td>{slideData.contactNumber}</td>
         <td>{slideData.zone}</td>
-        <td>{slideData.activationDate}</td>
-        <td>{slideData.completionDate}</td>
+        <td>{slideData.activation_date ? moment(slideData.activation_date).format('ll') : null}</td>
+        <td>{slideData.createdAt ? moment(slideData.createdAt).format('ll') : null}</td>
         {/* <td>{slideData.status}</td> */}
         {/* <td>
             <button className="btn btn-primary table-btn-block" onClick={() => this.showRestaurantDetail}>View</button>
@@ -101,7 +102,7 @@ class OnboardingSlide extends Component {
     ?
     <Link to={{
       pathname: "/dashboard/editshop/" + slideData.shopId,
-      state: { isApprovalRequired: slideData.status === 'Pending' } // Pass the status as a prop
+      state: { isApprovalRequired: slideData.shopStatus === 3 } // Pass the status as a prop
     }}>
       <button className="btn btn-primary table-btn-block" style={{ backgroundColor: '#007bff', color: 'white', textAlign: 'center', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         View

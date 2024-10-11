@@ -1,59 +1,81 @@
 import React, { Component } from 'react';
 import OnboardingSlide from './OnboardingSlide';
+import { shopListing } from '../../actions/shops';
 import Pagination from "react-js-pagination";
 import OnboardingFilter from './OnboardingFilter';
 
 class Onboarding extends Component {
   constructor(props) {
     super(props);
-    // Simulating data for frontend
     this.state = {
       onboardingListing: {
-        onboardings: [
-          {
-            uniqueId: 'R001',
-            restaurantName: 'Pizza Palace',
-            ownerName: 'John Doe',
-            email: 'john@pizzapalace.com',
-            contact: '9876543210',
-            zone: 'Zone 1',
-            activationDate: '2023-07-20',
-            completionDate: '2023-07-25',
-            status: 'Pending',
-          },
-          {
-            uniqueId: 'R002',
-            restaurantName: 'Sushi World',
-            ownerName: 'Jane Smith',
-            email: 'jane@sushiworld.com',
-            contact: '8765432109',
-            zone: 'Zone 2',
-            activationDate: '2023-07-22',
-            completionDate: '2023-08-28',
-            status: 'Completed',
-          },
-        ],
+        onboardings: [],
         limit: 10,
-        total: 2
+        total: 0,
       },
       activePage: 1,
-      filter: {}
+      filters: { status: 3 },
+      isLoading: false,
+      error: null,
     };
   }
 
-  getFilterFields = (filters) => {
-    this.setState({ filters });
-    // You can apply filter logic here when backend is ready
+  componentDidMount() {
+    this.fetchRecords(this.state.activePage, this.state.filters);
   }
 
-  handlePageChange = (activePage) => {
-    this.setState({ activePage });
-    // You can handle pagination logic here when backend is ready
+  fetchRecords = async (pageNumber = 1, filters = {}) => {
+    console.log(`Fetching records for page: ${pageNumber} with filters:`, filters);
+    this.setState({ isLoading: true, error: null });
+
+    try {
+      const response = await shopListing({
+        pageNumber, // Using 'pageNumber' as per your requirement
+        ...filters,
+      });
+
+      console.log("API Response:", response);
+
+      const { shop, total } = response.data.data;
+
+      if (!Array.isArray(shop)) {
+        throw new Error("Invalid data format: 'shop' should be an array.");
+      }
+
+      this.setState({
+        onboardingListing: {
+          onboardings: shop,
+          limit: 10, // Fixed limit
+          total: total,
+        },
+        activePage: pageNumber,
+        isLoading: false,
+      });
+
+      console.log(`Fetched ${shop.length} onboardings for page ${pageNumber}. Total: ${total}`);
+    } catch (error) {
+      console.error("Error fetching records:", error);
+      this.setState({ isLoading: false, error: 'Failed to fetch records.' });
+    }
+  }
+
+  handleFilterChange = (filters) => {
+    console.log("Filter changed to:", filters);
+    this.setState({ filters }, () => {
+      this.fetchRecords(1, filters); // Reset to first page on filter change
+    });
+  }
+
+  handlePageChange = (pageNumber) => {
+    console.log(`Page changed to: ${pageNumber}`);
+    this.fetchRecords(pageNumber, this.state.filters);
   }
 
   render() {
-    const { onboardingListing, activePage } = this.state;
-    const srno = (activePage - 1) * onboardingListing.limit;
+    const { onboardingListing, activePage, isLoading, error } = this.state;
+    const { onboardings, limit, total } = onboardingListing;
+
+    const srnoStart = (activePage - 1) * limit;
 
     return (
       <div className="right-ui-block">
@@ -66,53 +88,61 @@ class Onboarding extends Component {
               </div>
             </div>
 
-            <OnboardingFilter getFilterFields={this.getFilterFields} />
+            <OnboardingFilter getFilterFields={this.handleFilterChange} />
 
             <div className="row">
               <div className="col-sm-12">
                 <div className="result-listing">
-                  <div className="table-responsive">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Sr.no.</th>
-                          <th>Unique Id</th>
-                          <th className="manage-content">Restaurant Name</th>
-                          <th>Owner Name</th>
-                          <th>Email</th>
-                          <th>Contact</th>
-                          <th>Zone</th>
-                          <th>Activation Date</th>
-                          <th>Completion Date</th>
-                          {/* <th>Status</th> */}
-                          <th>View</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {
-                          onboardingListing.onboardings && onboardingListing.onboardings.length > 0 &&
-                          onboardingListing.onboardings.map((obj, index) => (
-                            <OnboardingSlide
-                              key={obj.uniqueId}
-                              index={index}
-                              srno={srno}
-                              slideData={obj}
-                            />
-                          ))
-                        }
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="pagination">
-                    <Pagination
-                      activePage={this.state.activePage}
-                      itemsCountPerPage={onboardingListing.limit}
-                      totalItemsCount={onboardingListing.total}
-                      pageRangeDisplayed={5}
-                      onChange={this.handlePageChange}
-                    />
-                  </div>
+                      <div className="table-responsive">
+                        <table className="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>Sr.no.</th>
+                              <th>Unique Id</th>
+                              <th className="manage-content">Restaurant Name</th>
+                              <th>Owner Name</th>
+                              <th>Email</th>
+                              <th>Contact</th>
+                              <th>Zone</th>
+                              <th>Activation Date</th>
+                              <th>Completion Date</th>
+                              {/* <th>Status</th> */}
+                              <th>View</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {onboardings.length > 0 ? (
+                              onboardings.map((obj, index) => (
+                                <OnboardingSlide
+                                  key={obj.uniqueId}
+                                  index={index}
+                                  srno={srnoStart + index + 1}
+                                  slideData={obj}
+                                />
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan="11" className="text-center">No records found.</td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+
+                      
+                        <div className="pagination">
+                          <Pagination
+                            activePage={activePage}
+                            itemsCountPerPage={limit}
+                            totalItemsCount={total}
+                            pageRangeDisplayed={5}
+                            onChange={this.handlePageChange}
+                            itemClass="page-item"
+                            linkClass="page-link"
+                          />
+                        </div>
+                     
                 </div>
               </div>
             </div>

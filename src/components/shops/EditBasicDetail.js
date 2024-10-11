@@ -243,7 +243,7 @@ class EditBasicDetail extends Component {
                             className="select-ui"
                           />
                         </div>
-                        <div className="col-lg-6">
+                        {/* <div className="col-lg-6">
                           <Field
                             name="avgCost"
                             component={renderField}
@@ -252,7 +252,7 @@ class EditBasicDetail extends Component {
                             label="Avg. Cost"
                             placeholder=""
                           />
-                        </div>
+                        </div> */}
                       </div>
                       <div className="row">
                         <div className="col-lg-6">
@@ -281,8 +281,8 @@ class EditBasicDetail extends Component {
                         </div>
                       </div>
                       
-                      <div className="row">
-                        <div className="col-lg-6 selectbox-block">
+                      {/* <div className="row"> */}
+                        {/* <div className="col-lg-6 selectbox-block">
                           <Field
                             label="Category"
                             name='category'
@@ -295,7 +295,7 @@ class EditBasicDetail extends Component {
                             className="select-ui"
                             parentDivClass="form-group w-100"
                           />
-                        </div>
+                        </div> */}
                         {/* <div className="col-lg-6">
                           <Field
                             name="accountManager"
@@ -306,7 +306,7 @@ class EditBasicDetail extends Component {
                             placeholder="eg. Shah"
                           />
                         </div> */}
-                      </div>
+                      {/* </div> */}
                       <div className="row">
                         <div className="col-lg-6">
                           <Field
@@ -366,7 +366,7 @@ class EditBasicDetail extends Component {
                           /> */}
                            <Field
                             label="Store Type"
-                            name='store_type'
+                            name='storeType'
                             options={STORE_TYPE}
                             component={renderReactSelect}
                             placeholder="Select Store Type"
@@ -424,7 +424,7 @@ class EditBasicDetail extends Component {
 
                         <div className="col-lg-6">
                           <Field
-                            name="tagline"
+                            name="restaurant_tagline"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -479,15 +479,15 @@ class EditBasicDetail extends Component {
                       <div className="row">
                         <div className="col-lg-6">
                           <Field
-                            name="merchant_charges"
+                            name="platform_commision"
                             component={renderField}
                             type="text"
                             className="form-control"
-                            label="Merchant Charges Cash Payment(%)"
+                            label="Platform Commision(%)"
                             placeholder="eg. 20"
                           />
                         </div>
-                        <div className="col-lg-6">
+                        {/* <div className="col-lg-6">
                           <Field
                             name="merchant_charges_online"
                             component={renderField}
@@ -496,9 +496,9 @@ class EditBasicDetail extends Component {
                             label="Merchant Charges Online Payment(%)"
                             placeholder="eg. 5"
                           />
-                        </div>
+                        </div> */}
                       </div>
-                      <div className="row">
+                      {/* <div className="row">
                         <div className="col-lg-6">
                           <Field
                             name="banner_promotion"
@@ -519,7 +519,7 @@ class EditBasicDetail extends Component {
                             placeholder="eg. 5"
                           />
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div> 
@@ -650,7 +650,7 @@ class EditBasicDetail extends Component {
                         </div>
                         <div className="col-lg-6">
                           <Field
-                            name="outlet_manager_email"
+                            name="account_manager_email"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -661,7 +661,7 @@ class EditBasicDetail extends Component {
                       <div className="row">
                         <div className="col-lg-6">
                           <Field
-                            name="outlet_manager_contactnumber"
+                            name="account_manager_phone"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -703,7 +703,7 @@ class EditBasicDetail extends Component {
                       </div>
                       
                       <div className="row">
-                        <div className="col-lg-6">
+                        {/* <div className="col-lg-6">
                           <Field
                             name="notifyEmail"
                             component={renderField}
@@ -712,7 +712,7 @@ class EditBasicDetail extends Component {
                             label="Correspondence Email"
                             placeholder="Email for notification"
                           />
-                        </div>
+                        </div> */}
                         <div className="col-lg-6">
                           <Field
                             name="contactNumber"
@@ -725,7 +725,7 @@ class EditBasicDetail extends Component {
                         </div>
                         
                       </div>
-                      <div className="row">
+                      {/* <div className="row">
                         <div className="col-lg-6">
                           <Field
                             name="firstAlertnateContactNumber"
@@ -746,7 +746,7 @@ class EditBasicDetail extends Component {
                             placeholder="Second Alternate Contact Number"
                           />
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

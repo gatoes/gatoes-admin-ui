@@ -7,7 +7,8 @@ class ManageShopLogo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      itemLogoUrl: null // Store the preview of the uploaded logo
+      itemLogoUrl: null, // Store the preview of the uploaded logo
+      isApprovalRequired: this.props.isApprovalRequired || false
     };
     this.handleLogoUpload = this.handleLogoUpload.bind(this);
   }
@@ -28,7 +29,7 @@ class ManageShopLogo extends Component {
   }
 
   render() {
-    const { handleSubmit, submitting } = this.props;
+    const { handleSubmit, submitting,isApprovalRequired } = this.props;
     const { itemLogoUrl } = this.state;
 
     return (
@@ -48,9 +49,12 @@ class ManageShopLogo extends Component {
             <div className="col-lg-12">
               <div className="row save-button-block">
                 <div className="col-sm-12 align-self-center">
-                  <button type="submit" disabled={submitting} className="btn green-btn">
-                    Submit details{submitting && <i className="fa fa-spinner fa-spin"></i>}
-                  </button>
+                {
+                isApprovalRequired ? <button type="button" className="btn green-btn" onClick={this.toggleApprovalModal}>
+                Approve and Submit {submitting && <i className="fa fa-spinner fa-spin"></i>}
+              </button> :
+          <button type="submit" disabled={submitting} className="btn green-btn">Submit details{submitting && <i className="fa fa-spinner fa-spin"></i>}</button>
+              }
                 </div>
               </div>
             </div>

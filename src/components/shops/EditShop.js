@@ -61,8 +61,8 @@ class EditShop extends Component {
               </li>
               <li><a className={`${activeMenu === 'logo' ? "active" : ""}`} href="javascript:void(0);" onClick={(e) => this.toggle(e, 'logo')}>Restaurant Logo</a>
               </li> {/* New menu option */}
-              <li><a className={`${activeMenu == 'banner' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'banner')}>Banner</a>
-              </li>
+              {!isApprovalRequired && <li><a className={`${activeMenu == 'banner' ? "active" : ""}`} href="javascript:void(0);" onClick={(e)=>this.toggle(e, 'banner')}>Banner</a>
+              </li>}
             </ul>
           </div>
           
@@ -81,7 +81,7 @@ class EditShop extends Component {
             :
             activeMenu === 'logo' 
             ? 
-            <ManageShopLogo shopId={this.state.shop_id} setMenuStatus={this.setMenuStatus} /> // Render the ManageShopLogo component
+            <ManageShopLogo shopId={this.state.shop_id} setMenuStatus={this.setMenuStatus} isApprovalRequired={isApprovalRequired}/> // Render the ManageShopLogo component
             :
             activeMenu == 'pics'
             ?
@@ -90,7 +90,6 @@ class EditShop extends Component {
             <ManageShopBanner
             shopId={this.state.shop_id}
             setMenuStatus={this.setMenuStatus}
-            isApprovalRequired={isApprovalRequired}
           />
           }
         
