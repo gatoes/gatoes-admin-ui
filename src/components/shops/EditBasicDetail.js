@@ -14,6 +14,7 @@ import { regionListing, deliveryRegionListing, getDeliveryRegionWithZone } from 
 import ExtraChargesTaxes from './ExtraChargesTaxes';
 import {IS_WITH_RIDER_OPTION, ALLOW_DELIVER_STATUS, VENDOR_TYPE, SHOP_DELIVERY_TYPE,TAG,iswithGatoes,ACCOUNT_TYPE_OPTIONS,STORE_TYPE} from '../../constants';
 import renderDatePicker from '../FormFields/renderDatePicker';
+import { planDetailById } from '../../actions/plans';
 
 class EditBasicDetail extends Component {
   constructor(props) {
@@ -109,7 +110,9 @@ class EditBasicDetail extends Component {
 
   componentWillMount(){
     shopDetailById({shopId : this.state.shopId}).then((response) => {
-      this.props.initialize(response.data.data);
+      // this.props.initialize(response.data.data);
+      const shopData = response.data.data
+      let planData = null
       this.getDeliveryRegion(response.data.data.region);
       this.props.change('mapaddress_chk', response.data.data && response.data.data.mapAddress);
       this.setState({
@@ -122,7 +125,33 @@ class EditBasicDetail extends Component {
           withoutRiderZone: 1
         })
       }
-
+      console.log("planCheck",response.data.data.planId)
+      if (shopData.planId !== null) {
+        // Fetch plan details
+        return planDetailById(shopData.planId)
+          .then((planResponse) => {
+            console.log("plan response", planResponse.data.data);
+            const { minimum_order, restaurant_visibility_range, commission, monthly_payout_request_limit } = planResponse.data.data;
+  
+            const planData = {
+              minimum_order,
+              shopDistanceView: restaurant_visibility_range,
+              platform_commision: commission,
+              payoutRequestLimit: monthly_payout_request_limit,
+            };
+  
+            // Initialize with combined data
+            this.props.initialize({ ...shopData, ...planData });
+          })
+          .catch((error) => {
+            console.error('Error fetching plan details:', error);
+            // Initialize with shopData only if plan details fail
+            this.props.initialize({ ...shopData });
+          });
+      } else {
+        // Initialize with shopData only if no planId
+        this.props.initialize({ ...shopData });
+      }
     });
   }
 
@@ -337,6 +366,7 @@ class EditBasicDetail extends Component {
                             type="number"
                             className="form-control"
                             label="Minimum Order Amount"
+                            disabled
                             placeholder=""
                           />
                         </div>
@@ -396,6 +426,7 @@ class EditBasicDetail extends Component {
                             type="number"
                             className="form-control"
                             label="Service Radius"
+                            disabled
                             placeholder=""
                           />
                         </div>
@@ -484,6 +515,7 @@ class EditBasicDetail extends Component {
                             type="text"
                             className="form-control"
                             label="Platform Commision(%)"
+                            disabled
                             placeholder="eg. 20"
                           />
                         </div>
@@ -862,6 +894,7 @@ class EditBasicDetail extends Component {
                           type="number"
                           className="form-control"
                           label="Payout Request Limitation"
+                          disabled
                           placeholder="ex.2"
                         />
                       </div>

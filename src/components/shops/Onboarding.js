@@ -17,7 +17,7 @@ class Onboarding extends Component {
       filters: { status: 3 },
       isLoading: false,
       error: null,
-    };
+    }
   }
 
   componentDidMount() {
@@ -119,6 +119,7 @@ class Onboarding extends Component {
                                   index={index}
                                   srno={srnoStart + index + 1}
                                   slideData={obj}
+                                  fetchRecords={this.fetchRecords}
                                 />
                               ))
                             ) : (

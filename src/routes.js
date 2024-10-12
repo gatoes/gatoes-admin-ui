@@ -233,7 +233,7 @@ export const ROUTES = {
   SHOPDOCSLISTING: { 
     path: '/dashboard/shopdocuments/:index',
     exact: true,
-    component: load('shops/DocsListing'),
+    component: load('shops/OnboardingDocsListing'),
     acl: 'SHOPS_DOCUMENTS'
   },
   ONBOARDINGDOCSLISTING: { 

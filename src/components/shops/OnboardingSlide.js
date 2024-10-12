@@ -7,6 +7,8 @@ import {getAclChecks} from '../../utilities';
 import ShowRestaurantDetail from './ShowRestaurantDetail'
 import Modal from '../../Modal';
 import moment from 'moment';
+import { deactivateShop } from '../../actions/shops';
+import { ACTIVATE_SUCCESS } from '../../constants';
 
 class OnboardingSlide extends Component {
   constructor(props) {
@@ -51,11 +53,19 @@ class OnboardingSlide extends Component {
         {
           label: 'Yes',
           onClick: () => {
+            deactivateShop({shopStatus: 1, shopId: itemId}).then((response) => {
+              // this.setState({
+              //   slideData: {...this.state.slideData, shopStatus: 1}
+              // })
+              //this.props.deactivateShopSuccess(shopId, 1);
+              toast.success("Restaurant Approved", {
+                position: toast.POSITION.TOP_RIGHT
+              });   
+              this.props.fetchRecords(1, {status: 3}); // This should be passed from the parent
+            });
             // Perform approval action (replace this with actual API call)
             console.log('Approving restaurant with ID:', itemId);
-            toast.success('Restaurant has been approved successfully.');
             // Optionally, you can update the restaurant's status to "Approved" in the parent state
-            this.props.approveSuccess(index); // This should be passed from the parent
           },
         },
         {
@@ -76,6 +86,7 @@ class OnboardingSlide extends Component {
   render() {
     const { slideData, index, srno,showRestaurantDetail } = this.state;
     console.log("slide data status",slideData)
+
     return (
         <>
       <tr>
@@ -122,7 +133,7 @@ class OnboardingSlide extends Component {
               {
                     getAclChecks('ONBOARDING_DOCUMENTS')
                     ?
-                    <li><Link to={"/dashboard/onboardingdocuments/" + slideData.uniqueId}>Documents</Link></li>
+                    <li><Link to={"/dashboard/onboardingdocuments/" + slideData.shopId}>Documents</Link></li>
                     :
                     null
             }
@@ -137,7 +148,7 @@ class OnboardingSlide extends Component {
 
              {/* Approve option */}
               <li>
-              <a href="javascript:void(0)" onClick={() => this.approveItem(slideData.uniqueId, index)}>
+              <a href="javascript:void(0)" onClick={() => this.approveItem(slideData.shopId, index)}>
                 Approve
               </a>
             </li>

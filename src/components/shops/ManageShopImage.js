@@ -43,7 +43,7 @@ class ManageShopImage extends Component {
   }
 
   submitMenuImage(values){
-    console.log('values', values);
+    console.log('uploading image check', values);
     return updateShopImage(values)
     .then((result) => {
       toast.success('Restaurant images uploaded Successfully.');
@@ -57,14 +57,18 @@ class ManageShopImage extends Component {
 
   render() {
     const {handleSubmit, pristine, submitting, cuisineList} = this.props;
+    const {itemImageUrl} = this.state;
+    console.log("check image",itemImageUrl)
     console.log('shoop', this.state.shopId);
+    console.log("props check",this.props)
+
     return (
       <div className="container ani-ui-block">
         <form onSubmit={handleSubmit(this.submitMenuImage.bind(this))}>
           <div className="row">
             <div className="col-lg-12 col-md-12">
               
-              <ShopImage getShopImage={this.getShopImage} itemImageUrl={this.state.itemImageUrl} />
+              <ShopImage getShopImage={this.getShopImage} itemImageUrl={itemImageUrl} imageType="SHOP_IMAGE"/>
               
             </div>
             <div className="col-lg-12">

@@ -62,6 +62,14 @@ export function editShopDetails(props){
   });
 }
 
+export function getShopDocuments(params){
+  return axios({
+    method: 'GET',
+    params: params,
+    url: `${MERCHANT_URL}/merchant/getShopDocuments`
+  });
+}
+
 export function addShopTiming(props){
   return axios({
     method: 'POST',
@@ -75,6 +83,14 @@ export function updateShopImage(props){
     method: 'POST',
     data: props,
     url: `${ROOT_URL}/serviceprovider/updateshopimage`
+  });
+}
+
+export function updateShopLogo(props){
+  return axios({
+    method: 'POST',
+    data: props,
+    url: `${ROOT_URL}/serviceprovider/updateshoplogo`
   });
 }
 
@@ -144,6 +160,15 @@ export function getShopImageById(params) {
     url: `${ROOT_URL}/serviceprovider/getshopimage`,
   });
 }
+
+export function getShopLogoById(params) {
+  return axios({
+    method: 'GET',
+    params: params,
+    url: `${ROOT_URL}/serviceprovider/getshoplogo`,
+  });
+}
+
 export function getShopListing(params) {
   return axios({
     method: 'GET',

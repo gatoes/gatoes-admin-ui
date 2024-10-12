@@ -89,7 +89,7 @@ export default class ShopImage extends Component {
               maxFileSize= "10MB"
               maxFiles={1}
               server={{
-                  url:API_ROOT+"/common/uploadfile?image_type=SHOP_LOGO",
+                  url:API_ROOT+`/common/uploadfile?image_type=${this.props.imageType}`,
                   process: {
                     onload: this.imageOnLoad.bind(this)
                   }
