@@ -173,6 +173,7 @@ class EditBasicDetail extends Component {
   render() {
     const {handleSubmit, pristine, submitting, cuisineList} = this.props;
     const {regionListing, deliveryRegion, categoryList, bankList, withoutRiderZone, restaurant_region} = this.state;
+    console.log("validate check",validate)
 
     const validateWordCount = value => {
       if (value && value.split(' ').length > 12) {
@@ -237,6 +238,7 @@ class EditBasicDetail extends Component {
                             type="text"
                             className="form-control"
                             label="Address"
+                            required={false}
                             placeholder=""
                           />
                         </div>
@@ -428,6 +430,7 @@ class EditBasicDetail extends Component {
                             label="Service Radius"
                             disabled
                             placeholder=""
+                            required={false}
                           />
                         </div>
                         <div className="col-lg-6">

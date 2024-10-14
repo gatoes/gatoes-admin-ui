@@ -373,7 +373,8 @@ class AddRegion extends Component {
         //curposdiv.innerHTML = "<b>curpos</b> Z: " + map.getZoom() + " C: " + map.getCenter().toUrlValue();
       });
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    initialize()
+    // google.maps.event.addDomListener(window, 'load', initialize);
   }
 
 

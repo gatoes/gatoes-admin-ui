@@ -33,18 +33,21 @@ class ManageShopLogo extends Component {
     .then((result) => {
       toast.success('Restaurant Logo uploaded Successfully.');
       this.props.reset();
-      deactivateShop({shopStatus: 1, shopId: this.state.shopId}).then((response) => {
-        // this.setState({
-        //   slideData: {...this.state.slideData, shopStatus: 1}
-        // })
-        //this.props.deactivateShopSuccess(shopId, 1);
-        toast.success("Restaurant Approved", {
-          position: toast.POSITION.TOP_RIGHT
-        });   
-        // this.props.fetchRecords(1, {status: 3}); // This should be passed from the parent
-      });
-      this.props.history.push('/dashboard/onboarding');
-      // this.props.setMenuStatus('banner');
+      if(this.state.isApprovalRequired) {
+        deactivateShop({shopStatus: 1, shopId: this.state.shopId}).then((response) => {
+          // this.setState({
+          //   slideData: {...this.state.slideData, shopStatus: 1}
+          // })
+          //this.props.deactivateShopSuccess(shopId, 1);
+          toast.success("Restaurant Approved", {
+            position: toast.POSITION.TOP_RIGHT
+          });   
+          // this.props.fetchRecords(1, {status: 3}); // This should be passed from the parent
+        });
+        this.props.history.push('/dashboard/onboarding');
+      }else {
+        this.props.setMenuStatus('banner');
+      }
     }).catch(error => {
       //throw new SubmissionError(error.response.data.error);
     })

@@ -49,6 +49,7 @@ class ManageShopBanner extends Component {
     return addShopBannerDetail(values)
     .then((result) => {
       toast.success('Restaurant banner added Successfully.');
+      this.props.history.push('/dashboard/shoplisting');
     }).catch(error => {
       //throw new SubmissionError(error.response.data.error);
     })

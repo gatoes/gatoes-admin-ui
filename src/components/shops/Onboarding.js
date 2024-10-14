@@ -94,10 +94,10 @@ class Onboarding extends Component {
               <div className="col-sm-12">
                 <div className="result-listing">
                       <div className="table-responsive">
-                        <table className="table table-bordered">
+                        <table>
                           <thead>
                             <tr>
-                              <th>Sr.no.</th>
+                              <th>Sr. no.</th>
                               <th>Unique Id</th>
                               <th className="manage-content">Restaurant Name</th>
                               <th>Owner Name</th>
@@ -124,7 +124,7 @@ class Onboarding extends Component {
                               ))
                             ) : (
                               <tr>
-                                <td colSpan="11" className="text-center">No records found.</td>
+                                <td colSpan="12" className="text-center">No records found.</td>
                               </tr>
                             )}
                           </tbody>

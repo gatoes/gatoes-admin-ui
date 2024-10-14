@@ -48,8 +48,8 @@ class ManageShopImage extends Component {
     .then((result) => {
       toast.success('Restaurant images uploaded Successfully.');
       this.props.reset();
-      this.props.history.push('/dashboard/shoplisting');
-      this.props.setMenuStatus('banner');
+      // this.props.history.push('/dashboard/shoplisting');
+      this.props.setMenuStatus('logo');
     }).catch(error => {
       //throw new SubmissionError(error.response.data.error);
     })

@@ -120,10 +120,10 @@ export const ACCOUNT_TYPE_OPTIONS = [
 
 
 export const STORE_TYPE = [
-  { value: '0', label: 'BRICK AND MORTAR' },
-  { value: '1', label: 'FOOD TRUCK' },
-  { value: '2', label: 'VIRTUAL BRAND' },
-  { value: '3', label: 'GHOST KITCHEN' },
+  { value: 0, label: 'BRICK AND MORTAR' },
+  { value: 1, label: 'FOOD TRUCK' },
+  { value: 2, label: 'VIRTUAL BRAND' },
+  { value: 3, label: 'GHOST KITCHEN' },
   
 ];
 

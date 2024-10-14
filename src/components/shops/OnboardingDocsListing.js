@@ -213,6 +213,12 @@ class OnboardingDocsListing extends Component {
             gstCharges: data.gstCharges !== null && data.gstCharges !== undefined ? data.gstCharges : null,
             documents: Array.isArray(data.gst_document) ? data.gst_document.map(doc => doc) : null
           }
+        },
+        {
+          doc_type: 'MENU',
+          data: {
+            documents: Array.isArray(data.menu_id) ? data.menu_id.map(doc => doc) : null
+          }
         }
       ];
       

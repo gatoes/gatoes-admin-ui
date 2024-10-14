@@ -7,9 +7,9 @@ const ValidateShop = values => {
   if (!values.avgCost || values.avgCost < 0) {
     errors.avgCost = 'Enter average cost';
   }
-  if (!values.shopDistanceView || values.shopDistanceView < 1) {
-    errors.shopDistanceView = 'Enter service radius';
-  }
+  // if (!values.shopDistanceView || values.shopDistanceView < 1) {
+  //   errors.shopDistanceView = 'Enter service radius';
+  // }
   if (!values.avgPreparationTime || values.avgPreparationTime < 0) {
     errors.avgPreparationTime = 'Enter average preparation name';
   }

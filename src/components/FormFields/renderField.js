@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 const renderField = ({ input, id, readOnly, initialValue, notes, parentDivClass, fieldClass, label, maxLength, type, placeholder,props,disabled, meta: {initial, touched, error, invalid, warning } }) => {
-  //console.log('rrrrrr', initial);
 return(
 
   <div className={ `${"form-group"} ${parentDivClass ? parentDivClass : ' '} ${touched && error ? ' has-error ':''}`} >
