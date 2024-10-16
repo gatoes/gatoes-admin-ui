@@ -24,7 +24,14 @@ class EditCuisines extends Component {
 
   submitMenuForm(values){
     const {itemIndex} = this.state;
-    return addCuisines(values)
+    console.log("check beror",values,itemIndex)
+    const cuisinePayload = {
+      cuisinesName : values.cuisinesName,
+      id: values.id,
+      image: values.image || this.props.detail.imageId,
+      popular: values.popular
+    }
+    return addCuisines(cuisinePayload)
     .then((result) => {
       this.props.updateCuisinesSuccess(result.data.data, itemIndex);
       toast.success('Cuisines updated Successfully.');
@@ -37,6 +44,7 @@ class EditCuisines extends Component {
 
   render() {
     const {handleSubmit, pristine, submitting} = this.props;
+    const {detail} = this.state
     return (
       <form onSubmit={handleSubmit(this.submitMenuForm.bind(this))}>
         <div className="form-block">
@@ -50,7 +58,7 @@ class EditCuisines extends Component {
                 label="Name"
                 placeholder=""
               />
-               <ShopCategoryImage getImage={this.getImage} />
+               <ShopCategoryImage getImage={this.getImage} itemImageUrl={(detail.imageUrl && detail.imageUrl.original) || ''} />
 
 
 <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>

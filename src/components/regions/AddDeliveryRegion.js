@@ -314,6 +314,7 @@ class AddDeliveryRegion extends Component {
   
   submitMenuForm(values){
     console.log('formssssss', values);
+    if(values.regionCoordinates){
     return addDriverGeofencing(values)
     .then((result) => {
       this.props.addDriverGeofencingSuccess(result.data.data);
@@ -323,6 +324,7 @@ class AddDeliveryRegion extends Component {
     }).catch(error => {
       //throw new SubmissionError(error.response.data.error);
     })
+    }
     
   }
 

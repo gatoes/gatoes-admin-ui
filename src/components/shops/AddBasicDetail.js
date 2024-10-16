@@ -114,7 +114,8 @@ class AddBasicDetail extends Component {
       console.log('result',result);
       this.props.setShopId(result.data.data.shopId);
     }).catch(error => {
-      throw new SubmissionError(error.response.data.error);
+      console.log("error check",error)
+      // throw new SubmissionError(error.response.data.error);
     })
   }
 
@@ -218,25 +219,15 @@ class AddBasicDetail extends Component {
                           parentDivClass="form-group w-100"
                         />
                       </div>
-                      <div className="col-lg-6">
+                    </div>
+                    <div className="row">
+                    <div className="col-lg-6">
                         <Field
                           name="avgPreparationTime"
                           component={renderField}
                           type="text"
                           className="form-control"
                           label="Avg. Preparation Time"
-                          placeholder=""
-                        />
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-lg-6">
-                        <Field
-                          name="avgCost"
-                          component={renderField}
-                          type="text"
-                          className="form-control"
-                          label="Avg. Cost"
                           placeholder=""
                         />
                       </div>
@@ -256,7 +247,7 @@ class AddBasicDetail extends Component {
                       </div>
                     </div>
                     
-                    <div className="row">
+                    {/* <div className="row">
                       <div className="col-lg-6 selectbox-block">
                         <Field
                           label="Category"
@@ -281,7 +272,7 @@ class AddBasicDetail extends Component {
                           placeholder="eg. Shah"
                         />
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="row">
                       <div className="col-lg-6">
@@ -314,6 +305,7 @@ class AddBasicDetail extends Component {
                           className="form-control"
                           label="Minimum Order Amount"
                           placeholder=""
+                          disabled
                         />
                       </div>
                       <div className="col-lg-6">
@@ -373,6 +365,7 @@ class AddBasicDetail extends Component {
                           className="form-control"
                           label="Service Radius"
                           placeholder=""
+                          disabled
                         />
                       </div>
                       <div className="col-lg-6">
@@ -455,15 +448,16 @@ class AddBasicDetail extends Component {
                     <div className="row">
                       <div className="col-lg-6">
                         <Field
-                          name="merchant_charges"
+                          name="platform_commision"
                           component={renderField}
                           type="text"
                           className="form-control"
-                          label="Merchant Charges Cash Payment(%)"
+                          label="Platform Commision(%)"
                           placeholder="eg. 20"
+                          disabled
                         />
                       </div>
-                      <div className="col-lg-6">
+                      {/* <div className="col-lg-6">
                         <Field
                           name="merchant_charges_online"
                           component={renderField}
@@ -472,9 +466,9 @@ class AddBasicDetail extends Component {
                           label="Merchant Charges Online Payment(%)"
                           placeholder="eg. 5"
                         />
-                      </div>
+                      </div> */}
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                       <div className="col-lg-6">
                         <Field
                           name="banner_promotion"
@@ -495,7 +489,7 @@ class AddBasicDetail extends Component {
                           placeholder="eg. 5"
                         />
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -680,7 +674,7 @@ class AddBasicDetail extends Component {
                     </div>
                     
                     <div className="row">
-                      <div className="col-lg-6">
+                      {/* <div className="col-lg-6">
                         <Field
                           name="notifyEmail"
                           component={renderField}
@@ -689,7 +683,7 @@ class AddBasicDetail extends Component {
                           label="Correspondence Email"
                           placeholder="Email for notification"
                         />
-                      </div>
+                      </div> */}
                       <div className="col-lg-6">
                         <Field
                           name="contactNumber"
@@ -702,7 +696,7 @@ class AddBasicDetail extends Component {
                       </div>
                       
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                       <div className="col-lg-6">
                         <Field
                           name="firstAlertnateContactNumber"
@@ -723,7 +717,7 @@ class AddBasicDetail extends Component {
                           placeholder="Second Alternate Contact Number"
                         />
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -839,6 +833,7 @@ class AddBasicDetail extends Component {
                           className="form-control"
                           label="Payout Request Limitation"
                           placeholder="ex.2"
+                          disabled
                         />
                       </div>
                     </div>

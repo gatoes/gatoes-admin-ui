@@ -11,7 +11,7 @@ class BestSellingItemsReporting extends Component {
   constructor(props){
     super(props);
     this.state = {
-      itemListing: props.itemListing,
+      itemListing: {},
       status: props.status,
       activePage: 1,
       startDownload: null
@@ -35,7 +35,7 @@ class BestSellingItemsReporting extends Component {
   }
  
   componentDidMount(){
-    this.fetchRecords(1);
+    // this.fetchRecords(1);
   }
 
   fetchRecords(pageNumber, filters){

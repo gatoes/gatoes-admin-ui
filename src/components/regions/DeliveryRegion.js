@@ -101,6 +101,8 @@ class DeliveryRegion extends Component {
                       <tr>
                         <th>Sr.no.</th>
                         <th>Name</th>
+                        <th>Normal Surge</th>
+                        <th>Weather Surge</th>
                         <th>Action</th>
                       </tr>
                     </thead>

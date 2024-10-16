@@ -112,6 +112,7 @@ class RiderTransactionDetail extends Component {
 			                                 	<th>Message</th>
 			                                 	<th>Amount</th>
 			                                 	<th>Type</th>
+												<th>Payment mode</th>
 			                                 	<th>Cashier</th>
 			                                 	<th>Edit</th>
 			                              	</tr>
@@ -125,6 +126,7 @@ class RiderTransactionDetail extends Component {
 						                              	<td>{item.message ? item.message : null}</td>
 						                              	<td>{currecySymbol + item.amount}</td>
 						                              	<td>{RIDER_PAYMENT_STATUS[item.type].label}</td>
+														  <td>{item && item.payment_mode ? 'Online' : 'Cash'}</td>
 						                              	<td>
 						                              		{ 
 						                              			item.type == "0" && item.collectedBy ? item.collectedBy : null  

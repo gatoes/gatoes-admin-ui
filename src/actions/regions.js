@@ -278,3 +278,11 @@ export function getCouponsTypesUsingMicroservice(params) {
     url: `${ROOT_URL}/serviceprovider/getCouponsTypesUsingMicroservice`,
   });
 }
+
+export function activateDeactivateSurgeByRegionId(props, id){
+  return axios({
+    method: 'PATCH',
+    data: props,
+    url: `${ROOT_URL}/serviceprovider/activateDeactivateSurgeByRegionId`
+  });
+}

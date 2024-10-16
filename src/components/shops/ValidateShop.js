@@ -4,9 +4,9 @@ const ValidateShop = values => {
     errors.shopName = 'Enter restaurant name';
   }
   
-  if (!values.avgCost || values.avgCost < 0) {
-    errors.avgCost = 'Enter average cost';
-  }
+  // if (!values.avgCost || values.avgCost < 0) {
+  //   errors.avgCost = 'Enter average cost';
+  // }
   // if (!values.shopDistanceView || values.shopDistanceView < 1) {
   //   errors.shopDistanceView = 'Enter service radius';
   // }
@@ -61,13 +61,13 @@ const ValidateShop = values => {
     errors.email = 'Enter valid email';
   }
 
-  if (!values.notifyEmail || values.notifyEmail.trim() === '') {
-    errors.notifyEmail = 'Enter notify email';
-  } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.notifyEmail)) {
+  // if (!values.notifyEmail || values.notifyEmail.trim() === '') {
+  //   errors.notifyEmail = 'Enter notify email';
+  // } else if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.notifyEmail)) {
     
-  } else {
-    errors.notifyEmail = 'Enter valid notify email';
-  }
+  // } else {
+  //   errors.notifyEmail = 'Enter valid notify email';
+  // }
 
   if (!values.contactNumber || values.contactNumber.trim() === '') {
     errors.contactNumber = 'Enter contact number';

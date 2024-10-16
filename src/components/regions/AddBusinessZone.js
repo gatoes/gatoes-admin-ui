@@ -315,6 +315,7 @@ class AddBusinessZone extends Component {
   
   submitMenuForm(values){
     //console.log('form', values);
+    if(values.regionCoordinates){
     return addBusinessZone(values)
     .then((result) => {
       this.props.addBusinessZoneSuccess(result.data.data);
@@ -324,6 +325,7 @@ class AddBusinessZone extends Component {
     }).catch(error => {
       //throw new SubmissionError(error.response.data.error);
     })
+  }
     
   }
 

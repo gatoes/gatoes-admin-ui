@@ -24,7 +24,7 @@ class ZoneUserData extends Component {
 		getZoneNewOldUserData({'is_csv': true, 'is_all': true}).then((response) => {	
 			console.log("response for csv",response)
 			this.setState({
-				startDownload: response
+				startDownload: response.data
 			});
 	    });
 	}

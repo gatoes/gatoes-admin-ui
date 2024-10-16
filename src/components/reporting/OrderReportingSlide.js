@@ -170,6 +170,11 @@ class OrderReportingSlide extends Component {
           {/* <td>{slideData.cancellationTime}</td> */}
           <td>{slideData.pickUpStatus}</td>
           {/* <td>{slideData.isSuper}</td> */}
+          <td>{slideData && slideData.isOrderWithPromotion ? 'Yes' : 'No'}</td>
+          <td>{slideData && slideData.promotionType ? slideData.promotionType : '-'  }</td>
+
+           <td>{ currencyFormat(slideData && slideData.surgeChargedOnMerchant ? slideData.surgeChargedOnMerchant : 0, 'INR') }</td>
+          <td>{ currencyFormat(slideData && slideData.surgeChargedOnUser ? slideData.surgeChargedOnUser : 0, 'INR') }</td>
 
         </tr>
         </>

@@ -37,14 +37,15 @@ class OnboardingFilter extends Component {
   // Apply filters
   applyFilters = (e) => {
     e.preventDefault();
-    const { name, contact, startDate, endDate } = this.state;
+    const { name, phone, startDate, endDate } = this.state;
 
     // Create the filter object
     const filters = {
       name,
-      contact,
-      startDate,
-      endDate,
+      phone,
+      status: 3
+      // startDate,
+      // endDate,
     };
 
     // Pass the filter data back to the parent component
@@ -52,7 +53,7 @@ class OnboardingFilter extends Component {
   };
 
   render() {
-    const { name, contact, dateRangeString } = this.state;
+    const { name, phone, dateRangeString } = this.state;
 
     return (
       <form onSubmit={this.applyFilters}>
@@ -61,7 +62,7 @@ class OnboardingFilter extends Component {
           <div className="col-sm-3 col-lg-3 col-xl-3">
           <div className="form-group">
 	                    	<label>Restaurant Name</label>
-	                    	<input type="text" name="name" className="form-control" value={name} placeholder="eg. Mahak" />
+	                    	<input type="text" name="name" className="form-control" value={name} placeholder="eg. Mahak" onChange={this.handleChange}/>
 	                  	</div>
           </div>
 
@@ -71,10 +72,10 @@ class OnboardingFilter extends Component {
               <label>Contact No.</label>
               <input
                 type="text"
-                name="contact"
+                name="phone"
                 className="form-control"
                 placeholder="e.g. 9876543210"
-                value={contact}
+                value={phone}
                 onChange={this.handleChange}
               />
             </div>

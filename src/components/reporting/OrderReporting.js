@@ -211,6 +211,10 @@ class OrderReporting extends Component {
                           {/* <th>Cancellation time</th> */}
                           <th>Pick Up Status</th>
                           {/* <th>Is Super</th> */}
+                          <th>With Promotion?</th>
+                          <th>Promotion Type</th>
+                          <th>Surge on Merchant</th>
+                          <th>Surge on User</th>
                         </tr>
                       </thead>
                       <tbody>

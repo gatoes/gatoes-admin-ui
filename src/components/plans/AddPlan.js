@@ -26,9 +26,15 @@ class AddPlan extends Component {
 
   merchantZone (ids) {
     console.log(ids.length, '53543543', ids);
-    let zoneIds = JSON.stringify(typeof ids != 'undefined' ? ids : []);
     if(ids.length){
-      shopListingByZone({zoneId : zoneIds}).then((response) => {
+      let zoneIds = Array.isArray(ids)
+      ? ids.map(item => (typeof item === 'object' && item !== null ? item.id : item))
+      : [];
+  
+      let newZoneIds = JSON.stringify(typeof zoneIds != 'undefined' ? zoneIds : [])
+      // let zoneIds = ids.map((it)=> it.id)
+      console.log("zoneIds",newZoneIds)
+      shopListingByZone({zoneId : newZoneIds}).then((response) => {
         this.setState({
           shopList: response.data.data ? response.data.data : []
         });

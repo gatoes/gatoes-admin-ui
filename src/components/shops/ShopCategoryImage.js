@@ -15,7 +15,7 @@ export default class ShopCategoryImage extends Component {
     super(props);
     this.state = {
       init: true,
-      itemImageUrl: props.itemImageUrl ? props.itemImageUrl : null
+      itemImageUrl: this.props.itemImageUrl ? this.props.itemImageUrl : null
     };
   }
 
