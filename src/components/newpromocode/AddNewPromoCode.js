@@ -1120,10 +1120,10 @@ enrichPayloadArrays(zoneArray, regionArray, restaurantArray, categoryArray, item
 
                   />
 
+                <PromoNewCodeCondition hideItemCategory={hideItemCategory} />
 <TermsAndConditions/>  
                   
                 {/* <RenderBusinessZoneCondition/> */}
-                <PromoNewCodeCondition hideItemCategory={hideItemCategory} />
                 
 
                 <div className="row save-button-block">

@@ -50,7 +50,7 @@ export function addNewShop(props){
   return axios({
     method: 'POST',
     data: props,
-    url: `${ROOT_URL}/serviceprovider/addshop`
+    url: `${MERCHANT_URL}/shop/add-shop-details`
   });
 }
 

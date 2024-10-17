@@ -21,7 +21,7 @@ class AddBasicDetail extends Component {
     this.state = {
       regionListing : [],
       deliveryRegion: [],
-      restaurant_region: [],
+      restaurant_region : [],
       categoryList: [],
       bankList:[],
      
@@ -50,7 +50,7 @@ class AddBasicDetail extends Component {
     let stats = 1;
     if(e.value == '1'){
       stats = 1;
-      this.props.change('restaurant_zone', []);
+      this.props.change('restaurant_region', []);
     } else {
       stats = 0;
     }
@@ -334,7 +334,7 @@ class AddBasicDetail extends Component {
                         /> */}
                          <Field
                             label="Store Type"
-                            name='store_type'
+                            name='storeType'
                             options={STORE_TYPE}
                             component={renderReactSelect}
                             placeholder="Select Store Type"
@@ -393,7 +393,7 @@ class AddBasicDetail extends Component {
                       </div>
                       <div className="col-lg-6">
                           <Field
-                            name="tagline"
+                            name="restaurant_tagline"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -612,7 +612,7 @@ class AddBasicDetail extends Component {
                       <div className="row">
                         <div className="col-lg-6">
                           <Field
-                            name="outlet_manager_name"
+                            name="account_manager_name"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -621,7 +621,7 @@ class AddBasicDetail extends Component {
                         </div>
                         <div className="col-lg-6">
                           <Field
-                            name="outlet_manager_email"
+                            name="account_manager_email"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -632,7 +632,7 @@ class AddBasicDetail extends Component {
                       <div className="row">
                         <div className="col-lg-6">
                           <Field
-                            name="outlet_manager_contactnumber"
+                            name="account_manager_phone"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -653,7 +653,7 @@ class AddBasicDetail extends Component {
                     <div className="row">
                       <div className="col-lg-6">
                         <Field
-                          name="name"
+                          name="shopkeeper_name"
                           component={renderField}
                           type="text"
                           className="form-control"
@@ -663,7 +663,7 @@ class AddBasicDetail extends Component {
                       </div>
                       <div className="col-lg-6">
                         <Field
-                          name="email"
+                          name="shopkeeper_email"
                           component={renderField}
                           type="text"
                           className="form-control"
@@ -686,7 +686,7 @@ class AddBasicDetail extends Component {
                       </div> */}
                       <div className="col-lg-6">
                         <Field
-                          name="contactNumber"
+                          name="shopkeeper_phone"
                           component={renderField}
                           type="number"
                           className="form-control"

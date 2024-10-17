@@ -96,6 +96,6 @@ const ValidateShop = values => {
   
   
 
-  return errors;
+  return {};
 }
 export default ValidateShop;

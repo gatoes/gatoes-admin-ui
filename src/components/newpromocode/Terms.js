@@ -58,7 +58,7 @@ class TermsAndConditions extends Component {
                     onEditorChange={this.handleEditorChange}
                   />
                 </div>
-                <button type="submit" className="btn green-btn">Submit details</button>
+                {/* <button type="submit" className="btn green-btn">Submit details</button> */}
               </form>
             </div>
           </div>
