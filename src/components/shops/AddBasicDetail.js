@@ -109,7 +109,7 @@ class AddBasicDetail extends Component {
   }
 
   submitMenuForm(values){
-    return addNewShop(values)
+    return addNewShop({...values,userRole: 'SERVICEPROVIDER'})
     .then((result) => {
       console.log('result',result);
       this.props.setShopId(result.data.data.shopId);

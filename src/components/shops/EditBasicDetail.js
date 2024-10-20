@@ -675,7 +675,7 @@ class EditBasicDetail extends Component {
                       <div className="row">
                         <div className="col-lg-6">
                         <Field
-                            name="accountManager"
+                            name="account_manager_name"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -717,7 +717,7 @@ class EditBasicDetail extends Component {
                       <div className="row">
                         <div className="col-lg-6">
                           <Field
-                            name="name"
+                            name="shopkeeper_name"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -727,7 +727,7 @@ class EditBasicDetail extends Component {
                         </div>
                         <div className="col-lg-6">
                           <Field
-                            name="email"
+                            name="shopkeeper_email"
                             component={renderField}
                             type="text"
                             className="form-control"
@@ -750,7 +750,7 @@ class EditBasicDetail extends Component {
                         </div> */}
                         <div className="col-lg-6">
                           <Field
-                            name="contactNumber"
+                            name="shopkeeper_phone"
                             component={renderField}
                             type="number"
                             className="form-control"
