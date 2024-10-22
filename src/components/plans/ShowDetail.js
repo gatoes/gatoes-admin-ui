@@ -43,18 +43,15 @@ class ShowDetail extends Component {
                 <li> <label>Code</label> 
                   <p>{ slideData.code && slideData.code }</p>
                 </li>
-                <li> <label>Commision</label> <p>{slideData.commision && slideData.commision}%</p> </li> 
-                <li> <label>Merchant delivery cap</label> <p>{slideData.merchant_delivery_cap && slideData.merchant_delivery_cap}</p> </li> 
-                <li> <label>Delivery range</label> <p>{slideData.delivery_range && slideData.delivery_range}</p> </li> 
-                <li> <label>Monthly payout request limit</label> <p>{slideData.monthly_payout_request_limit && slideData.monthly_payout_request_limit}</p> </li> 
-                <li> <label>User platform fee</label> <p>{currency} {slideData.user_platform_fee && slideData.user_platform_fee}</p> </li> 
-                <li> <label>Menu update charges</label> <p>{currency} {slideData && slideData.menu_updation_charges}</p> </li> 
+                <li> <label>Restaurant visibility range</label> <p>{slideData && slideData.restaurant_visibility_range ? slideData.restaurant_visibility_range +"km": '-'}</p> </li> 
                 <li> <label>Platform onboarding fee</label> <p>{currency}{slideData.platform_on_boarding_fee && slideData.platform_on_boarding_fee}</p> </li> 
                 <li> <label>Minimum order</label> <p>{currency} {slideData.minimum_order && slideData.minimum_order}</p> </li> 
-                <li> <label>Order scheduling</label> <p>{slideData.order_scheduling && slideData.order_scheduling ? 'Yes' : 'No'}</p> </li> 
-                <li> <label>Main listing</label> <p>{slideData.listing && slideData.listing ? 'Yes' : 'No'}</p> </li> 
+                <li> <label>Menu update charges</label> <p>{currency} {slideData && slideData.menu_updation_charges}</p> </li> 
+                <li> <label>Monthly payout request limit</label> <p>{slideData.monthly_payout_request_limit && slideData.monthly_payout_request_limit}</p> </li> 
+                <li> <label>Show in listing</label> <p>{slideData.listing && slideData.listing ? 'Yes' : 'No'}</p> </li>
                 <li> <label>In app promotion</label> <p>{slideData.in_app_promotion && slideData.in_app_promotion ? 'Yes' : 'No'}</p> </li> 
                 <li> <label>Area wise analytics</label> <p>{slideData.area_wise_analytics && slideData.area_wise_analytics ? 'Yes' : 'No'}</p> </li> 
+                <li> <label>Order scheduling</label> <p>{slideData.order_scheduling && slideData.order_scheduling ? 'Yes' : 'No'}</p> </li>
                 <li> <label>Merchant support</label> <p>{MERCHANT_SUPPORT[slideData.merchant_support].label}</p> </li> 
 
               </ul>
@@ -64,33 +61,48 @@ class ShowDetail extends Component {
 
         <div className="order-info">
           <div className="order-heading-ui">
-            <h4>Delivery Charges</h4>
+            <h4>Merchant</h4>
           </div>
           <div className="content-detail">
-            <div className="subsciption-id-ui">
+            <div className="order-full-info">
               <ul>
-                {
-                  slideData && slideData.user_delivery_charges && slideData.merchant_delivery_charges && (
-                    <>
-                    <li> 
-                      <label>Range</label>
-                      {/* <p>{ obj.range && obj.range }</p> */}
-                    </li>
-                    <li> 
-                      <label>User delivery charges</label>
-                      <p>{currency} {  slideData.user_delivery_charges }</p>
-                    </li>
-                    <li> 
-                      <label>Merchant delivery charges</label>
-                      <p>{currency}{ slideData.merchant_delivery_charges }</p>
-                    </li>
-                    </>
-                   )
-                 }
+              <li> <label>Commision</label> <p>{slideData && slideData.commission ? slideData.commission + "%" : "-"}</p> </li> 
+                <li> <label>Delivery charges</label> <p>{currency}{slideData.merchant_delivery_charges && slideData.merchant_delivery_charges}</p> </li> 
+                <li> <label>Multiplier Beyond Normal Delivery Radius (Actual Radius- Normal Range)</label> <p> {slideData.merchant_multiplier_beyond_normal_delivery_radius && slideData.merchant_multiplier_beyond_normal_delivery_radius}</p> </li> 
+                <li> <label>Base Price (Max)(Cap)</label> <p>{currency}{slideData.merchant_base_price && slideData.merchant_base_price}</p> </li> 
+                <li> <label>Base Percentage (%) (Subtotal*Below Percentage)</label> <p>{slideData.merchant_base_percentage && slideData.merchant_base_percentage}</p> </li> 
+                <li> <label>Cap (%) (Subtotal * Below Percentage)</label> <p>{slideData.merchant_cap_percentage && slideData.merchant_cap_percentage}</p> </li> 
+                <li> <label>Surge</label> <p>{currency}{slideData.merchant_surge && slideData.merchant_surge}</p> </li> 
+                <li> <label>Normal Delivery Radius (in KM)</label> <p>{slideData.merchant_normal_delivery_radius && slideData.merchant_normal_delivery_radius}</p> </li> 
+                <li> <label>Merchant max cap (%)</label> <p>{slideData.merchant_max_cap_percentage && slideData.merchant_max_cap_percentage}</p> </li> 
+
               </ul>
             </div>
           </div>
         </div>
+        <div className="order-info">
+          <div className="order-heading-ui">
+            <h4>User</h4>
+          </div>
+          <div className="content-detail">
+            <div className="order-full-info">
+              <ul>
+                <li> <label>Order Base Price (Rs)</label> <p>{currency}{slideData.order_base_price && slideData.order_base_price}</p> </li> 
+                <li> <label>User base</label> <p> {slideData.user_platform_base && slideData.user_platform_base}</p> </li> 
+                <li> <label>Platform fee divisor</label> <p>{slideData.user_platform_base_divisor && slideData.user_platform_base_divisor}</p> </li> 
+                <li> <label>Delivery Charges (Rs)(Per Km)</label> <p>{slideData.user_delivery_charges && slideData.user_delivery_charges}</p> </li> 
+                <li> <label>Delivery Charges (Beyond Normal Delivery Radius (Actual Radius- Normal Range)Per Km</label> <p>{slideData.user_delivery_charges_beyond_normal_delivery_radius && slideData.user_delivery_charges_beyond_normal_delivery_radius}</p> </li> 
+                <li> <label>Base order Price for normal Delivery Radius (Rs)</label> <p>{currency}{slideData.base_order_price_for_normal_delivery_radius && slideData.base_order_price_for_normal_delivery_radius}</p> </li> 
+                <li> <label>Normal Delivery Radius (in KM)</label> <p>{slideData.user_normal_delivery_radius && slideData.user_normal_delivery_radius}</p> </li> 
+                <li> <label>Weather Surge</label> <p>{slideData.user_surge && slideData.user_surge}</p> </li> 
+
+                <li> <label>Low Order Fee(If Order Value is Less than the Base Order value)</label> <p>{slideData.user_low_order_fee && slideData.user_low_order_fee}</p> </li> 
+                <li> <label>User Platform Fee</label> <p>{slideData.user_platform_fee && slideData.user_platform_fee}</p> </li> 
+              </ul>
+            </div>
+          </div>
+        </div>
+
 
         <div className="order-info">
           <div className="order-heading-ui">
