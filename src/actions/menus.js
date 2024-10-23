@@ -17,6 +17,7 @@ export const UPDATE_REQUESTED_ITEM_SUCCESS = 'UPDATE_REQUESTED_ITEM_SUCCESS';
 export const DELETE_MENU_ITEM_SUCCESS = 'DELETE_MENU_ITEM_SUCCESS';
 
 const ROOT_URL = API_ROOT;
+const MERCHANT_URL= "http://localhost:6969/api/v1"
 var token = "";
 
 export function getRecommendedItems(params) {
@@ -55,7 +56,7 @@ export function menuCategory(params) {
   return axios({
     method: 'GET',
     params: params,
-    url: `${ROOT_URL}/serviceprovider/getshopcategories`,
+    url: `${MERCHANT_URL}/merchant/getshopcategories`,
     
   });
 }
@@ -71,7 +72,7 @@ export function addMenuItems(props){
   return axios({
     method: 'POST',
     data: props,
-    url: `${ROOT_URL}/serviceprovider/addItems`
+    url: `${MERCHANT_URL}/merchant/addItems`
   });
 }
 
@@ -101,7 +102,7 @@ export function addMenuCategories(props){
   return axios({
     method: 'POST',
     data: props,
-    url: `${ROOT_URL}/serviceprovider/addcategory`
+    url: `${MERCHANT_URL}/merchant/addcategory`
   });
 }
 
@@ -116,7 +117,7 @@ export function deleteMenuCategory(data) {
   return axios({
     method: 'POST',
     data: data,
-    url: `${ROOT_URL}/serviceprovider/deletecategory`
+    url: `${MERCHANT_URL}/merchant/deletecategory`
   });
 }
 
@@ -124,7 +125,7 @@ export function categoryDetailById(params) {
   return axios({
     method: 'GET',
     params: params,
-    url: `${ROOT_URL}/serviceprovider/getcategorybyid`,
+    url: `${MERCHANT_URL}/merchant/getcategorybyid`,
   });
 }
 
@@ -152,9 +153,9 @@ export function menuItemDetailByIdSuccess(payload) {
 
 export function statusItemAvailability(data){
   return axios({
-    method: 'PUT',
+    method: 'POST',
     data: data,
-    url: `${ROOT_URL}/serviceprovider/markitemavailability`,
+    url: `${MERCHANT_URL}/merchant/markitemavailability`,
   });
 }
 
@@ -162,7 +163,7 @@ export function updateMenuCategoryOrder(data) {
   return axios({
     method: 'POST',
     data: data,
-    url: `${ROOT_URL}/serviceprovider/changecategoryposition`
+    url: `${MERCHANT_URL}/merchant/changecategoryposition`
   });
 }
 
