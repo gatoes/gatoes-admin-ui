@@ -10,7 +10,7 @@ class Onboarding extends Component {
     this.state = {
       onboardingListing: {
         onboardings: [],
-        limit: 10,
+        limit: 0,
         total: 0,
       },
       activePage: 1,
@@ -36,7 +36,7 @@ class Onboarding extends Component {
 
       console.log("API Response:", response);
 
-      const { shop, total } = response.data.data;
+      const { shop, total,limit } = response.data.data;
 
       if (!Array.isArray(shop)) {
         throw new Error("Invalid data format: 'shop' should be an array.");
@@ -45,7 +45,7 @@ class Onboarding extends Component {
       this.setState({
         onboardingListing: {
           onboardings: shop,
-          limit: 10, // Fixed limit
+          limit: limit, // Fixed limit
           total: total,
         },
         activePage: pageNumber,
@@ -61,19 +61,22 @@ class Onboarding extends Component {
 
   handleFilterChange = (filters) => {
     console.log("Filter changed to:", filters);
-    this.setState({ filters }, () => {
-      this.fetchRecords(1, filters); // Reset to first page on filter change
-    });
+    this.setState({ filters });
+    this.fetchRecords(1, filters); // Reset to first page on filter change
   }
 
   handlePageChange = (pageNumber) => {
     console.log(`Page changed to: ${pageNumber}`);
+    this.setState({
+      activePage: pageNumber
+    })
     this.fetchRecords(pageNumber, this.state.filters);
   }
 
   render() {
     const { onboardingListing, activePage, isLoading, error } = this.state;
     const { onboardings, limit, total } = onboardingListing;
+    console.log("total check",limit,total)
 
     const srnoStart = (activePage - 1) * limit;
 
@@ -112,7 +115,7 @@ class Onboarding extends Component {
                             </tr>
                           </thead>
                           <tbody>
-                            {onboardings.length > 0 ? (
+                            {onboardings.length > 0 && (
                               onboardings.map((obj, index) => (
                                 <OnboardingSlide
                                   key={obj.uniqueId}
@@ -122,10 +125,6 @@ class Onboarding extends Component {
                                   fetchRecords={this.fetchRecords}
                                 />
                               ))
-                            ) : (
-                              <tr>
-                                <td colSpan="12" className="text-center">No records found.</td>
-                              </tr>
                             )}
                           </tbody>
                         </table>
@@ -136,11 +135,9 @@ class Onboarding extends Component {
                           <Pagination
                             activePage={activePage}
                             itemsCountPerPage={limit}
-                            totalItemsCount={total}
+                            totalItemsCount={total ? total : 0}
                             pageRangeDisplayed={5}
                             onChange={this.handlePageChange}
-                            itemClass="page-item"
-                            linkClass="page-link"
                           />
                         </div>
                      

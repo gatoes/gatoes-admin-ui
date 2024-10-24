@@ -98,7 +98,7 @@ class EditMenuItem extends Component {
     let differVariant = differentiateVariant(itemDec, values);
     values = {...values, deletedAddons: differ.addOnDiff, deleteCustomization: differ.custDiff, deletedVariant: differVariant};
     //console.log('values', values);
-    return addMenuItems(values)
+    return addMenuItems({...values,role:"admin"})
     .then((result) => {
       toast.success('Menu updated Successfully.');
       this.props.reset();

@@ -140,7 +140,8 @@ export const RIDER_WORKING_SHIFT = [
 
 export const VEG_CATEGORY = [
   { value: '0', label: 'Non-veg' },
-  { value: '1', label: 'Veg' }
+  { value: '1', label: 'Veg' },
+  { value: '2', label: 'Egg' }
 ];
 
 export const WALLET_ACTION = [

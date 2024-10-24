@@ -13,6 +13,7 @@ export const CANCEL_OUTSTOCK_ITEM = 'CANCEL_OUTSTOCK_ITEM';
 export const REMOVE_OUTSTOCK_ITEM = 'REMOVE_OUTSTOCK_ITEM';
 
 const ROOT_URL = API_ROOT;
+const TEST_URL = "http://13.233.128.10/api/v1"
 var token = "";
 
 export function orderListing(params) {
@@ -67,7 +68,7 @@ export function reBroadCastOrder(data) {
   return axios({
     method: 'POST',
     data: data,
-    url: `${ROOT_URL}/serviceprovider/reassineorder`
+    url: `${TEST_URL}/driver/broadcastRiderAssignment`
   });
 }
 export function reBroadCastOrderSuccess(payload) {

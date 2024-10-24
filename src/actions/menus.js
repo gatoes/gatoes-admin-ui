@@ -87,7 +87,7 @@ export function deleteMenuItem(data) {
   return axios({
     method: 'POST',
     data: data,
-    url: `${ROOT_URL}/serviceprovider/deletemenuitem`
+    url: `${MERCHANT_URL}/merchant/deletemenuitem`
   });
 }
 
