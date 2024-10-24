@@ -83,6 +83,12 @@ class OnboardingSlide extends Component {
     this.setState({ showRestaurantDetail: false });
   };
 
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      slideData: nextProps.slideData
+    });
+  }
+
   render() {
     const { slideData, index, srno,showRestaurantDetail } = this.state;
     console.log("slide data status",slideData)
@@ -141,7 +147,7 @@ class OnboardingSlide extends Component {
 
               {/* Delete option */}
               <li>
-                <a href="javascript:void(0)" onClick={() => this.deleteItem(slideData.uniqueId, index)}>
+                <a href="javascript:void(0)">
                   Delete
                 </a>
               </li>
